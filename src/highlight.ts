@@ -1,57 +1,102 @@
 import Parser from "tree-sitter";
-import { Languages } from "./languages.ts";
-import { type Token, type BundledLanguage, bundledLanguages } from "./types.ts";
+import { languages, bundledLanguages, queries } from "./languages.ts";
+import type { BundledLanguage, Theme, Token } from "./types.ts";
+import fs from "node:fs";
 
-function walkTree(
-  node: Parser.SyntaxNode,
-  language: keyof typeof Languages,
-): Token[] {
-  const tokens: Token[] = [];
-
-  for (const child of node.children) {
-    if (child.childCount === 0) {
-      tokens.push({
-        value: child.text,
-        type: Languages[language].nodeTypeInfo.find(
-          (t) => t.type === child.type,
-        )?.type,
-      });
-    }
-    tokens.push(...walkTree(child, language));
-  }
-
-  return tokens;
+function escapeHTML(input: string): string {
+  return input
+    .replaceAll(`&`, `&amp;`)
+    .replaceAll(`"`, `&quot;`)
+    .replaceAll(`'`, `&#x27;`)
+    .replaceAll(`<`, `&lt;`)
+    .replaceAll(`>`, `&gt;`);
 }
 
-function highlightCode(
-  sourceCode: string,
-  language: BundledLanguage = "plaintext",
+export function highlight(
+  code: string,
+  language: BundledLanguage,
+  theme: Theme,
+  returnVal: "tokens",
+): Token[];
+export function highlight(
+  code: string,
+  language: BundledLanguage,
+  theme: Theme,
+  returnVal?: "code",
+): string;
+export function highlight(
+  code: string,
+  language: BundledLanguage,
+  theme?: Theme,
+  returnVal: "code" | "tokens" = "code",
 ) {
   if (!bundledLanguages.includes(language)) {
-    throw new Error(`Language "${language}" is not supported.`);
+    throw new Error(`Language "${language}" is not supported`);
   }
 
   if (
-    language === "plaintext" ||
     language === "plain" ||
+    language === "plaintext" ||
     language === "text" ||
     language === "txt"
   ) {
-    return sourceCode;
+    return `<pre>${code}</pre>`;
   }
 
   const parser = new Parser();
-  parser.setLanguage(Languages[language]);
-  const tree = parser.parse(sourceCode);
-  return walkTree(tree.rootNode, language);
-}
 
-const sourceCode = `
-const a = 2;
-if (a%2 === 0) {
-  console.log(a);
-  return <h2>text</h2>
-}
-`;
+  parser.setLanguage(languages[language]);
+  const rootNode = parser.parse(code).rootNode;
+  const query = new Parser.Query(
+    languages[language],
+    fs.readFileSync(`highlights/${queries[language]}.scm`),
+  );
+  const tokens: Token[] = [];
+  let lastEndIndex = 0;
 
-console.log(highlightCode(sourceCode));
+  function findCaptures(node: Parser.SyntaxNode) {
+    const matches = query.matches(node);
+    for (const match of matches) {
+      for (const capture of match.captures) {
+        if (capture.node === node) return capture.name;
+      }
+    }
+  }
+
+  function traverseNode(node: Parser.SyntaxNode) {
+    const highlightType = findCaptures(node) || node.type;
+
+    if (node.childCount === 0) {
+      if (node.startIndex > lastEndIndex && lastEndIndex !== 0) {
+        tokens.push({
+          value: code.slice(lastEndIndex, node.startIndex),
+          type: "whitespace",
+        });
+      }
+
+      tokens.push({
+        value: node.text,
+        type: highlightType,
+      });
+      lastEndIndex = node.endIndex;
+    }
+
+    for (let child of node.children) {
+      traverseNode(child);
+    }
+  }
+
+  traverseNode(rootNode);
+
+  if (returnVal === "tokens") {
+    return tokens;
+  }
+
+  let highlightedCode = "";
+  for (const token of tokens) {
+    const tokenStyle = theme?.highlights[token.type];
+    highlightedCode += `<span class="${token.type}" ${tokenStyle ? ` style="${tokenStyle.backgroundColor ? `background-color:${tokenStyle.backgroundColor};` : ""}${tokenStyle.color ? `color:${tokenStyle.color};` : ""}${tokenStyle.fontStyle ? `font-style:${tokenStyle.fontStyle};` : ""}${tokenStyle.fontWeight ? `font-weight:${tokenStyle.fontWeight}` : ""}"` : ""}>${escapeHTML(token.value)}</span>`;
+  }
+
+  return `<pre${theme && (theme.bg || theme.fg) ? ` style="${theme.bg ? `background-color:${theme.bg};` : ""}${theme.fg ? `color:${theme.fg};` : ""}"` : ""}>${highlightedCode}</pre>`;
+}

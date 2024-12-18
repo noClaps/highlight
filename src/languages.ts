@@ -21,7 +21,7 @@ import Scala from "tree-sitter-scala";
 import Shell from "tree-sitter-bash";
 import TypeScript from "tree-sitter-typescript";
 
-export const Languages = {
+export const languages = {
   // C
   c: C,
   // C++
@@ -84,4 +84,77 @@ export const Languages = {
   tsx: TypeScript.tsx,
   typescript: TypeScript.typescript,
   ts: TypeScript.typescript,
+};
+
+export const bundledLanguages = [
+  ...Object.keys(languages),
+  "plaintext",
+  "plain",
+  "text",
+  "txt",
+];
+
+export const queries = {
+  // C
+  c: "c",
+  // C++
+  cpp: "cpp",
+  "c++": "cpp",
+  // C#
+  csharp: "c-sharp",
+  "c#": "c-sharp",
+  cs: "c-sharp",
+  // CSS
+  css: "css",
+  // GLSL
+  glsl: "glsl",
+  // Go
+  go: "go",
+  // Haskell
+  haskell: "haskell",
+  hs: "haskell",
+  // HTML
+  html: "html",
+  // Java
+  java: "java",
+  // JavaScript
+  javascript: "javascript",
+  js: "javascript",
+  jsx: "javascript",
+  // JSDoc
+  jsdoc: "jsdoc",
+  // JSON
+  json: "json",
+  // Julia
+  julia: "julia",
+  jl: "julia",
+  // OCaml
+  ocaml: "ocaml",
+  ocaml_interface: "ocaml",
+  ocaml_type: "ocaml",
+  // PHP
+  php: "php",
+  php_only: "php_only",
+  // Python
+  python: "python",
+  py: "python",
+  // Regex
+  regexp: "regex",
+  regex: "regex",
+  // Ruby
+  ruby: "ruby",
+  rb: "ruby",
+  // Rust
+  rust: "rust",
+  rs: "rust",
+  // Scala
+  scala: "scala",
+  // Shell
+  shellscript: "bash",
+  bash: "bash",
+  sh: "bash",
+  // TypeScript
+  tsx: "tsx",
+  typescript: "typescript",
+  ts: "typescript",
 };
