@@ -3,6 +3,74 @@ import { languages, bundledLanguages, queries } from "./languages.ts";
 import type { BundledLanguage, Theme, Token } from "./types.ts";
 import fs from "node:fs";
 
+function typeCorrections(node: Parser.SyntaxNode, language: BundledLanguage) {
+  switch (language) {
+    case "bash":
+    case "shellscript":
+    case "sh": {
+      if (node.type === "word" && node.text.startsWith("-")) return "constant";
+      if (node.type === "word" && node.parent?.type === "command_name") return;
+      if (node.type === "word") return "";
+
+      if (
+        node.text === "=" &&
+        node.parent &&
+        ["variable_assignment", "binary_expression"].includes(node.parent.type)
+      )
+        return "operator";
+      break;
+    }
+
+    case "c": {
+      break;
+    }
+  }
+
+  // if (node.type === "shorthand_property_identifier") {
+  //   return "property";
+  // }
+
+  // if (
+  //   node.type === "identifier" &&
+  //   (node.parent?.type.includes("function") ||
+  //     node.parent?.type.includes("call"))
+  // ) {
+  //   return "function";
+  // }
+
+  // if (node.type === "identifier" && node.parent?.type === "type") {
+  //   return "type";
+  // }
+
+  // if (
+  //   node.type === "property_identifier" &&
+  //   node.parent?.parent?.type.includes("call")
+  // ) {
+  //   return "function";
+  // }
+
+  // if (
+  //   node.type === "property_identifier" &&
+  //   node.parent?.parent?.type.includes("new")
+  // ) {
+  //   return "constructor";
+  // }
+
+  // if (node.type === ":") {
+  //   return node.type;
+  // }
+
+  // if (
+  //   node.parent?.type === "template_substitution" &&
+  //   node.text === node.type
+  // ) {
+  //   return "punctuation.special";
+  // }
+
+  if ("()[]{}".includes(node.type)) return "punctuation.bracket";
+  if (!isNaN(Number(node.text))) return "number";
+}
+
 function escapeHTML(input: string): string {
   return input
     .replaceAll(`&`, `&amp;`)
@@ -15,20 +83,7 @@ function escapeHTML(input: string): string {
 export function highlight(
   code: string,
   language: BundledLanguage,
-  theme: Theme,
-  returnVal: "tokens",
-): Token[];
-export function highlight(
-  code: string,
-  language: BundledLanguage,
-  theme: Theme,
-  returnVal?: "code",
-): string;
-export function highlight(
-  code: string,
-  language: BundledLanguage,
   theme?: Theme,
-  returnVal: "code" | "tokens" = "code",
 ) {
   if (!bundledLanguages.includes(language)) {
     throw new Error(`Language "${language}" is not supported`);
@@ -40,7 +95,7 @@ export function highlight(
     language === "text" ||
     language === "txt"
   ) {
-    return `<pre>${code}</pre>`;
+    return `<pre>${escapeHTML(code)}</pre>`;
   }
 
   const parser = new Parser();
@@ -54,19 +109,10 @@ export function highlight(
   const tokens: Token[] = [];
   let lastEndIndex = 0;
 
-  function findCaptures(node: Parser.SyntaxNode) {
-    const matches = query.matches(node);
-    for (const match of matches) {
-      for (const capture of match.captures) {
-        if (capture.node === node) return capture.name;
-      }
-    }
-  }
-
   function traverseNode(node: Parser.SyntaxNode) {
-    const highlightType = findCaptures(node) || node.type;
-
     if (node.childCount === 0) {
+      const captures = query.captures(node).map((c) => c.name);
+
       if (node.startIndex > lastEndIndex && lastEndIndex !== 0) {
         tokens.push({
           value: code.slice(lastEndIndex, node.startIndex),
@@ -74,9 +120,23 @@ export function highlight(
         });
       }
 
+      let type = "";
+      if (captures.length > 0) {
+        type = captures[0];
+      } else {
+        if (node.parent && node.parent.childCount > 0) {
+          const parentCaptures = query.captures(node.parent).map((c) => c.name);
+          if (parentCaptures.length > 0) {
+            type = parentCaptures[0];
+          }
+        }
+      }
+
+      type = typeCorrections(node, language) ?? type;
+
       tokens.push({
         value: node.text,
-        type: highlightType,
+        type,
       });
       lastEndIndex = node.endIndex;
     }
@@ -88,14 +148,10 @@ export function highlight(
 
   traverseNode(rootNode);
 
-  if (returnVal === "tokens") {
-    return tokens;
-  }
-
   let highlightedCode = "";
   for (const token of tokens) {
     const tokenStyle = theme?.highlights[token.type];
-    highlightedCode += `<span class="${token.type}" ${tokenStyle ? ` style="${tokenStyle.backgroundColor ? `background-color:${tokenStyle.backgroundColor};` : ""}${tokenStyle.color ? `color:${tokenStyle.color};` : ""}${tokenStyle.fontStyle ? `font-style:${tokenStyle.fontStyle};` : ""}${tokenStyle.fontWeight ? `font-weight:${tokenStyle.fontWeight}` : ""}"` : ""}>${escapeHTML(token.value)}</span>`;
+    highlightedCode += `<span class="${token.type}"${tokenStyle ? ` style="${tokenStyle.backgroundColor ? `background-color:${tokenStyle.backgroundColor};` : ""}${tokenStyle.color ? `color:${tokenStyle.color};` : ""}${tokenStyle.fontStyle ? `font-style:${tokenStyle.fontStyle};` : ""}${tokenStyle.fontWeight ? `font-weight:${tokenStyle.fontWeight}` : ""}"` : ""}>${escapeHTML(token.value)}</span>`;
   }
 
   return `<pre${theme && (theme.bg || theme.fg) ? ` style="${theme.bg ? `background-color:${theme.bg};` : ""}${theme.fg ? `color:${theme.fg};` : ""}"` : ""}>${highlightedCode}</pre>`;

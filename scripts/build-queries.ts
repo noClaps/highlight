@@ -1,6 +1,6 @@
 const completedPaths: string[] = [];
 
-const treeSitterJSONs = new Bun.Glob("**/tree-sitter.json").scanSync(
+const treeSitterJSONs = new Bun.Glob("*/tree-sitter.json").scanSync(
   "node_modules",
 );
 for (const treeSitterJSON of treeSitterJSONs) {

@@ -1,3 +1,7 @@
 node_modules
 highlights
+
+# Testing files
 test
+highlight.json
+out.html
