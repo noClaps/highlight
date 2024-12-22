@@ -87,6 +87,7 @@ export const languages = {
   ts: TypeScript.typescript,
 };
 
+/** A list of the languages supported by Highlight. */
 export const bundledLanguages: string[] = [
   ...Object.keys(languages),
   "plaintext",

@@ -7,6 +7,7 @@ export interface Token {
 
 export type TSLanguage = keyof typeof languages;
 
+/** The type of bundled language used by the Highlight package */
 export type BundledLanguage =
   | TSLanguage
   | "plaintext"
@@ -14,6 +15,7 @@ export type BundledLanguage =
   | "text"
   | "txt";
 
+/** The type of theme accepted by the Highlight package. */
 export type Theme = {
   fg: string;
   bg: string;
