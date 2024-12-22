@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.2.1
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.2.0...v0.2.1)
+
+### 🚀 Enhancements
+
+- Add class name to `pre` element for easier selection ([f3a6c71](https://gitlab.com/noClaps/highlight/commit/f3a6c71))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.2.0
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.5...v0.2.0)
