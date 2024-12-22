@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.1.4
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.3...v0.1.4)
+
+### 🩹 Fixes
+
+- Move doc comments to source files ([f0d1cdf](https://gitlab.com/noClaps/highlight/commit/f0d1cdf))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.1.3
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.2...v0.1.3)
