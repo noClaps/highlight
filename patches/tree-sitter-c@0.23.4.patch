@@ -1,0 +1,192 @@
+diff --git a/queries/highlights.scm b/queries/highlights.scm
+index 8ee118900ffeb324d36dad5b68f8e0c2107d9b06..634f8d81c4ad9351fe342b92f2c23dbe5c70969c 100644
+--- a/queries/highlights.scm
++++ b/queries/highlights.scm
+@@ -1,72 +1,114 @@
+-(identifier) @variable
++[
++  "break"
++  "case"
++  "const"
++  "continue"
++  "default"
++  "do"
++  "else"
++  "enum"
++  "extern"
++  "for"
++  "goto"
++  "if"
++  "inline"
++  "return"
++  "sizeof"
++  "static"
++  "struct"
++  "switch"
++  "typedef"
++  "union"
++  "volatile"
++  "while"
++] @keyword
+ 
+-((identifier) @constant
+- (#match? @constant "^[A-Z][A-Z\\d_]*$"))
++[
++  "#define"
++  "#elif"
++  "#else"
++  "#endif"
++  "#if"
++  "#ifdef"
++  "#ifndef"
++  "#include"
++  (preproc_directive)
++] @keyword
+ 
+-"break" @keyword
+-"case" @keyword
+-"const" @keyword
+-"continue" @keyword
+-"default" @keyword
+-"do" @keyword
+-"else" @keyword
+-"enum" @keyword
+-"extern" @keyword
+-"for" @keyword
+-"if" @keyword
+-"inline" @keyword
+-"return" @keyword
+-"sizeof" @keyword
+-"static" @keyword
+-"struct" @keyword
+-"switch" @keyword
+-"typedef" @keyword
+-"union" @keyword
+-"volatile" @keyword
+-"while" @keyword
++[
++  "="
++  "+="
++  "-="
++  "*="
++  "/="
++  "%="
++  "&="
++  "|="
++  "^="
++  "<<="
++  ">>="
++  "++"
++  "--"
++  "+"
++  "-"
++  "*"
++  "/"
++  "%"
++  "~"
++  "&"
++  "|"
++  "^"
++  "<<"
++  ">>"
++  "!"
++  "&&"
++  "||"
++  "=="
++  "!="
++  "<"
++  ">"
++  "<="
++  ">="
++  "->"
++  "?"
++  ":"
++] @operator
+ 
+-"#define" @keyword
+-"#elif" @keyword
+-"#else" @keyword
+-"#endif" @keyword
+-"#if" @keyword
+-"#ifdef" @keyword
+-"#ifndef" @keyword
+-"#include" @keyword
+-(preproc_directive) @keyword
++[
++  "."
++  ";"
++  ","
++] @punctuation.delimiter
+ 
+-"--" @operator
+-"-" @operator
+-"-=" @operator
+-"->" @operator
+-"=" @operator
+-"!=" @operator
+-"*" @operator
+-"&" @operator
+-"&&" @operator
+-"+" @operator
+-"++" @operator
+-"+=" @operator
+-"<" @operator
+-"==" @operator
+-">" @operator
+-"||" @operator
++[
++  "{"
++  "}"
++  "("
++  ")"
++  "["
++  "]"
++] @punctuation.bracket
+ 
+-"." @delimiter
+-";" @delimiter
++[
++  (string_literal)
++  (system_lib_string)
++  (char_literal)
++] @string
+ 
+-(string_literal) @string
+-(system_lib_string) @string
++(comment) @comment
+ 
+-(null) @constant
+ (number_literal) @number
+-(char_literal) @number
+ 
+-(field_identifier) @property
+-(statement_identifier) @label
+-(type_identifier) @type
+-(primitive_type) @type
+-(sized_type_specifier) @type
++[
++  (true)
++  (false)
++  (null)
++] @constant
++
++(identifier) @variable
++
++((identifier) @constant
++ (#match? @constant "^_*[A-Z][A-Z\\d_]*$"))
+ 
+ (call_expression
+   function: (identifier) @function)
+@@ -78,4 +120,11 @@
+ (preproc_function_def
+   name: (identifier) @function.special)
+ 
+-(comment) @comment
++(field_identifier) @property
++(statement_identifier) @label
++
++[
++  (type_identifier)
++  (primitive_type)
++  (sized_type_specifier)
++] @type

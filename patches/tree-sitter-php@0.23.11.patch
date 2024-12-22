@@ -1,0 +1,29 @@
+diff --git a/queries/highlights.scm b/queries/highlights.scm
+index 95b4ca2810663ab61f30bc8c8a1e428fde5f8a1f..1731c268f46530cea0fc8f5dad1d5b01536df61a 100644
+--- a/queries/highlights.scm
++++ b/queries/highlights.scm
+@@ -185,4 +185,23 @@
+ ((name) @variable.builtin
+  (#eq? @variable.builtin "this"))
+ 
+-"$" @operator
++[
++  "$"
++  "=>"
++  ":"
++] @operator
++
++[
++  "("
++  ")"
++  "{"
++  "}"
++  "["
++  "]"
++] @punctuation.bracket
++
++[
++  "."
++  ","
++  ";"
++] @punctuation.delimiter

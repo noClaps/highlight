@@ -1,0 +1,20 @@
+diff --git a/node_modules/tree-sitter-ruby/.bun-tag-7b7fb54349d8ef37 b/.bun-tag-7b7fb54349d8ef37
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/node_modules/tree-sitter-ruby/.bun-tag-d43b2e998e93a128 b/.bun-tag-d43b2e998e93a128
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/queries/highlights.scm b/queries/highlights.scm
+index dd1c91394917f71550075db236048a700ae332c0..3575edeec09a2a0d471c82d96dfad4827655bb97 100644
+--- a/queries/highlights.scm
++++ b/queries/highlights.scm
+@@ -134,6 +134,9 @@
+ "="
+ "=>"
+ "->"
++"<"
++":"
++"**"
+ ] @operator
+ 
+ [

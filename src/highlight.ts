@@ -2,73 +2,173 @@ import Parser from "tree-sitter";
 import { languages, bundledLanguages, queries } from "./languages.ts";
 import type { BundledLanguage, Theme, Token } from "./types.ts";
 import fs from "node:fs";
+import {
+  bashCorrections,
+  cCorrections,
+  cppCorrections,
+  cSharpCorrections,
+  cssCorrections,
+  goCorrections,
+  htmlCorrections,
+  javaCorrections,
+  jsCorrections,
+  ocamlCorrections,
+  phpCorrections,
+  pythonCorrections,
+  regexCorrections,
+  rubyCorrections,
+  rustCorrections,
+  scalaCorrections,
+  tsCorrections,
+  tsxCorrections,
+} from "./corrections.ts";
 
-function typeCorrections(node: Parser.SyntaxNode, language: BundledLanguage) {
+function typeCorrections(
+  node: Parser.SyntaxNode,
+  captures: string[],
+  language: BundledLanguage,
+): string | undefined {
   switch (language) {
     case "bash":
     case "shellscript":
     case "sh": {
-      if (node.type === "word" && node.text.startsWith("-")) return "constant";
-      if (node.type === "word" && node.parent?.type === "command_name") return;
-      if (node.type === "word") return "";
-
-      if (
-        node.text === "=" &&
-        node.parent &&
-        ["variable_assignment", "binary_expression"].includes(node.parent.type)
-      )
-        return "operator";
+      const c = bashCorrections(node);
+      if (c !== undefined) return c;
       break;
     }
 
     case "c": {
+      const c = cCorrections(node, captures);
+      if (c !== undefined) return c;
+      break;
+    }
+
+    case "c#":
+    case "cs":
+    case "csharp": {
+      const c = cSharpCorrections(node);
+      if (c !== undefined) return c;
+      break;
+    }
+
+    case "cpp":
+    case "c++": {
+      const c = cppCorrections(node, captures);
+      if (c !== undefined) return c;
+      break;
+    }
+
+    case "css": {
+      const c = cssCorrections(node);
+      if (c !== undefined) return c;
+      break;
+    }
+
+    case "go": {
+      const c = goCorrections(node);
+      if (c !== undefined) return c;
+      break;
+    }
+
+    case "html": {
+      const c = htmlCorrections(node);
+      if (c !== undefined) return c;
+      break;
+    }
+
+    case "java": {
+      const c = javaCorrections(node);
+      if (c !== undefined) return c;
+      break;
+    }
+
+    case "js":
+    case "jsx":
+    case "javascript": {
+      const c = jsCorrections(node, captures);
+      if (c !== undefined) return c;
+      break;
+    }
+
+    case "ml":
+    case "ocaml":
+    case "ocaml_type":
+    case "ocaml_interface": {
+      const c = ocamlCorrections(node);
+      if (c !== undefined) return c;
+      break;
+    }
+
+    case "php_only":
+    case "php": {
+      const c = phpCorrections(node, captures);
+      if (c !== undefined) return c;
+
+      break;
+    }
+
+    case "py":
+    case "python": {
+      const c = pythonCorrections(node, captures);
+      if (c !== undefined) return c;
+
+      break;
+    }
+
+    case "regex":
+    case "regexp": {
+      const c = regexCorrections(node);
+      if (c !== undefined) return c;
+
+      break;
+    }
+
+    case "rb":
+    case "ruby": {
+      const c = rubyCorrections(node, captures);
+      if (c !== undefined) return c;
+
+      break;
+    }
+
+    case "rs":
+    case "rust": {
+      const c = rustCorrections(node, captures);
+      if (c !== undefined) return c;
+
+      break;
+    }
+
+    case "scala": {
+      const c = scalaCorrections(node, captures);
+      if (c !== undefined) return c;
+
+      break;
+    }
+
+    case "ts":
+    case "typescript": {
+      const c = tsCorrections(node, captures);
+      if (c !== undefined) return c;
+
+      break;
+    }
+
+    case "tsx": {
+      const c = tsxCorrections(node, captures);
+      if (c !== undefined) return c;
+
       break;
     }
   }
 
-  // if (node.type === "shorthand_property_identifier") {
-  //   return "property";
-  // }
-
-  // if (
-  //   node.type === "identifier" &&
-  //   (node.parent?.type.includes("function") ||
-  //     node.parent?.type.includes("call"))
-  // ) {
-  //   return "function";
-  // }
-
-  // if (node.type === "identifier" && node.parent?.type === "type") {
-  //   return "type";
-  // }
-
-  // if (
-  //   node.type === "property_identifier" &&
-  //   node.parent?.parent?.type.includes("call")
-  // ) {
-  //   return "function";
-  // }
-
-  // if (
-  //   node.type === "property_identifier" &&
-  //   node.parent?.parent?.type.includes("new")
-  // ) {
-  //   return "constructor";
-  // }
-
-  // if (node.type === ":") {
-  //   return node.type;
-  // }
-
-  // if (
-  //   node.parent?.type === "template_substitution" &&
-  //   node.text === node.type
-  // ) {
-  //   return "punctuation.special";
-  // }
-
-  if ("()[]{}".includes(node.type)) return "punctuation.bracket";
-  if (!isNaN(Number(node.text))) return "number";
+  if (
+    node.type === "identifier" &&
+    (node.parent?.type.includes("function") ||
+      node.parent?.type.includes("call"))
+  ) {
+    return "function";
+  }
 }
 
 function escapeHTML(input: string): string {
@@ -114,10 +214,38 @@ export function highlight(
       const captures = query.captures(node).map((c) => c.name);
 
       if (node.startIndex > lastEndIndex && lastEndIndex !== 0) {
-        tokens.push({
-          value: code.slice(lastEndIndex, node.startIndex),
-          type: "whitespace",
-        });
+        const codeSection = code.slice(lastEndIndex, node.startIndex);
+        if (!codeSection.trim()) {
+          tokens.push({
+            value: codeSection,
+            type: "whitespace",
+          });
+        } else {
+          let type = "";
+          if (language === "css") {
+            if (!isNaN(Number(codeSection))) type = "number";
+            if (node.previousSibling?.type === "color_value") {
+              type = "string.special";
+            }
+          } else if (["rust", "rs"].includes(language)) {
+            let currentNode = node;
+            for (
+              let lim = 0;
+              node.parent?.type !== "line_comment" && node.parent && lim < 5;
+              lim++
+            ) {
+              currentNode = node.parent;
+            }
+            if (currentNode) {
+              type = "comment";
+            }
+          }
+
+          tokens.push({
+            value: codeSection,
+            type,
+          });
+        }
       }
 
       let type = "";
@@ -132,7 +260,7 @@ export function highlight(
         }
       }
 
-      type = typeCorrections(node, language) ?? type;
+      type = typeCorrections(node, captures, language) ?? type;
 
       tokens.push({
         value: node.text,
@@ -154,5 +282,5 @@ export function highlight(
     highlightedCode += `<span class="${token.type}"${tokenStyle ? ` style="${tokenStyle.backgroundColor ? `background-color:${tokenStyle.backgroundColor};` : ""}${tokenStyle.color ? `color:${tokenStyle.color};` : ""}${tokenStyle.fontStyle ? `font-style:${tokenStyle.fontStyle};` : ""}${tokenStyle.fontWeight ? `font-weight:${tokenStyle.fontWeight}` : ""}"` : ""}>${escapeHTML(token.value)}</span>`;
   }
 
-  return `<pre${theme && (theme.bg || theme.fg) ? ` style="${theme.bg ? `background-color:${theme.bg};` : ""}${theme.fg ? `color:${theme.fg};` : ""}"` : ""}>${highlightedCode}</pre>`;
+  return `<pre${theme && (theme.bg || theme.fg) ? ` style="${theme.bg ? `background-color:${theme.bg};` : ""}${theme.fg ? `color:${theme.fg};` : ""}"` : ""}><code>${highlightedCode}</code></pre>`;
 }

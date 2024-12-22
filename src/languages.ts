@@ -56,6 +56,7 @@ export const languages = {
   julia: Julia,
   jl: Julia,
   // OCaml
+  ml: Ocaml.ocaml,
   ocaml: Ocaml.ocaml,
   ocaml_interface: Ocaml.ocaml_interface,
   ocaml_type: Ocaml.ocaml_type,
@@ -129,12 +130,13 @@ export const queries = {
   julia: "julia",
   jl: "julia",
   // OCaml
+  ml: "ocaml",
   ocaml: "ocaml",
   ocaml_interface: "ocaml",
   ocaml_type: "ocaml",
   // PHP
   php: "php",
-  php_only: "php_only",
+  php_only: "php",
   // Python
   python: "python",
   py: "python",

@@ -1,0 +1,24 @@
+diff --git a/queries/highlights.scm b/queries/highlights.scm
+index ea0ff4e30858417100ba96931f7e3a659b27d2a4..6bb0c23374b8f4e6edd5fdc8ae13df444df42b9a 100644
+--- a/queries/highlights.scm
++++ b/queries/highlights.scm
+@@ -1,13 +1,16 @@
+ (tag_name) @tag
+-(erroneous_end_tag_name) @tag.error
+-(doctype) @constant
+-(attribute_name) @attribute
++(erroneous_end_tag_name) @keyword
++(doctype) @tag.doctype
++(attribute_name) @property
+ (attribute_value) @string
+ (comment) @comment
+ 
++"=" @operator
++
+ [
+   "<"
+   ">"
++  "<!"
+   "</"
+   "/>"
+ ] @punctuation.bracket

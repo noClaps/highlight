@@ -1,5 +1,4 @@
-import { highlight } from "./src/highlight.ts";
-import type { Theme } from "./src/types.ts";
+import { highlight, type BundledLanguage, type Theme } from "./index.ts";
 
 const theme: Theme = {
   fg: "#fff",
@@ -131,7 +130,7 @@ const theme: Theme = {
   },
 };
 
-const lang = "c";
+const lang: BundledLanguage = "c";
 
 const code = await Bun.file(`test/test.${lang}`).text();
 const highlightedCode = highlight(code, lang, theme);

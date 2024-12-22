@@ -1,0 +1,27 @@
+diff --git a/queries/highlights.scm b/queries/highlights.scm
+index 9f5b7d6ada2df22c075d79b60e93df68381a2f96..b38b699cd2f5e007a97931b9376e623b261e9c33 100644
+--- a/queries/highlights.scm
++++ b/queries/highlights.scm
+@@ -144,3 +144,22 @@
+   "while"
+   "with"
+ ] @keyword
++
++(type_arguments
++  "<" @punctuation.bracket
++  ">" @punctuation.bracket)
++
++[
++  "("
++  ")"
++  "["
++  "]"
++  "{"
++  "}"
++] @punctuation.bracket
++
++[
++  "."
++  ","
++  ";"
++] @punctuation.delimiter
