@@ -184,7 +184,7 @@ export function highlight(
   code: string,
   language: BundledLanguage,
   theme?: Theme,
-) {
+): string {
   if (!bundledLanguages.includes(language)) {
     throw new Error(`Language "${language}" is not supported`);
   }

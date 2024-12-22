@@ -87,7 +87,7 @@ export const languages = {
   ts: TypeScript.typescript,
 };
 
-export const bundledLanguages = [
+export const bundledLanguages: string[] = [
   ...Object.keys(languages),
   "plaintext",
   "plain",
