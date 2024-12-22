@@ -1,12 +1,13 @@
 diff --git a/queries/highlights.scm b/queries/highlights.scm
-index 9f5b7d6ada2df22c075d79b60e93df68381a2f96..b38b699cd2f5e007a97931b9376e623b261e9c33 100644
+index b13b4f460fa80860b552070d7d9d2f527b164381..d1d01430e592bef630ff0c1d55dde5bef686fabe 100644
 --- a/queries/highlights.scm
 +++ b/queries/highlights.scm
-@@ -144,3 +144,22 @@
-   "while"
+@@ -147,3 +147,23 @@
    "with"
+   "yield"
  ] @keyword
 +
+++
 +(type_arguments
 +  "<" @punctuation.bracket
 +  ">" @punctuation.bracket)

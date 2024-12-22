@@ -12,7 +12,7 @@
     "tree-sitter-go": "^0.23.4",
     "tree-sitter-haskell": "^0.23.1",
     "tree-sitter-html": "^0.23.2",
-    "tree-sitter-java": "^0.23.4",
+    "tree-sitter-java": "^0.23.5",
     "tree-sitter-javascript": "^0.23.1",
     "tree-sitter-jsdoc": "^0.23.2",
     "tree-sitter-json": "^0.24.8",
@@ -68,9 +68,9 @@
     "tree-sitter-ocaml@0.23.2": "patches/tree-sitter-ocaml@0.23.2.patch",
     "tree-sitter-php@0.23.11": "patches/tree-sitter-php@0.23.11.patch",
     "tree-sitter-python@0.23.5": "patches/tree-sitter-python@0.23.5.patch",
-    "tree-sitter-java@0.23.4": "patches/tree-sitter-java@0.23.4.patch",
     "tree-sitter-ruby@0.23.1": "patches/tree-sitter-ruby@0.23.1.patch",
     "tree-sitter-rust@0.23.2": "patches/tree-sitter-rust@0.23.2.patch",
-    "tree-sitter-scala@0.23.3": "patches/tree-sitter-scala@0.23.3.patch"
+    "tree-sitter-scala@0.23.3": "patches/tree-sitter-scala@0.23.3.patch",
+    "tree-sitter-java@0.23.5": "patches/tree-sitter-java@0.23.5.patch"
   }
 }
