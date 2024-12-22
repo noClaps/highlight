@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.2.0
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.5...v0.2.0)
+
+### 🩹 Fixes
+
+- ⚠️  Add spans for each line of output ([f3dd91a](https://gitlab.com/noClaps/highlight/commit/f3dd91a))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Add spans for each line of output ([f3dd91a](https://gitlab.com/noClaps/highlight/commit/f3dd91a))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.1.5
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.4...v0.1.5)
