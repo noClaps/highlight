@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.1.1
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.0...v0.1.1)
+
+### 🤖 CI
+
+- Fix build pipeline ([d61c461](https://gitlab.com/noClaps/highlight/commit/d61c461))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## 0.1.0
 
 

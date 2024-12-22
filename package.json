@@ -1,6 +1,6 @@
 {
   "name": "@noclaps/highlight",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "dependencies": {
     "tree-sitter": "^0.22.1",
     "tree-sitter-bash": "^0.23.3",
