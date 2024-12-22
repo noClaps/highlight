@@ -229,7 +229,9 @@ export function highlight(
   const rootNode = parser.parse(code).rootNode;
   const query = new Parser.Query(
     languages[language],
-    fs.readFileSync(`highlights/${queries[language]}.scm`),
+    fs.readFileSync(
+      `${import.meta.dir}/../highlights/${queries[language]}.scm`,
+    ),
   );
   const tokens: Token[] = [];
   let lastEndIndex = 0;
