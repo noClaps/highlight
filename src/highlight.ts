@@ -332,7 +332,7 @@ export function highlight(
     .map((line) => `<span class="line">${line}</span>`)
     .join("\n");
 
-  return `<pre${
+  return `<pre class="ts-highlight"${
     theme && (theme.bg || theme.fg)
       ? ` style="${theme.bg ? `background-color:${theme.bg};` : ""}${
           theme.fg ? `color:${theme.fg};` : ""
