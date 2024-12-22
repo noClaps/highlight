@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.1.2
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.1...v0.1.2)
+
+### 🤖 CI
+
+- Fix publish pipeline ([ec6818b](https://gitlab.com/noClaps/highlight/commit/ec6818b))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.1.1
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.0...v0.1.1)
