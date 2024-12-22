@@ -305,9 +305,38 @@ export function highlight(
 
   let highlightedCode = "";
   for (const token of tokens) {
+    const multipleEmptyLines = token.value.split("").filter((c) => c === "\n");
+    if (multipleEmptyLines.length >= 2) {
+      for (const _ of multipleEmptyLines) {
+        highlightedCode += `<span class="line"></span>\n`;
+      }
+      continue;
+    }
+
     const tokenStyle = theme?.highlights[token.type];
-    highlightedCode += `<span class="${token.type}"${tokenStyle ? ` style="${tokenStyle.backgroundColor ? `background-color:${tokenStyle.backgroundColor};` : ""}${tokenStyle.color ? `color:${tokenStyle.color};` : ""}${tokenStyle.fontStyle ? `font-style:${tokenStyle.fontStyle};` : ""}${tokenStyle.fontWeight ? `font-weight:${tokenStyle.fontWeight}` : ""}"` : ""}>${escapeHTML(token.value)}</span>`;
+    highlightedCode += `${token.value.includes("\n") ? "\n" : ""}<span class="${token.type}"${
+      tokenStyle
+        ? ` style="${
+            tokenStyle.backgroundColor
+              ? `background-color:${tokenStyle.backgroundColor};`
+              : ""
+          }${tokenStyle.color ? `color:${tokenStyle.color};` : ""}${
+            tokenStyle.fontStyle ? `font-style:${tokenStyle.fontStyle};` : ""
+          }${tokenStyle.fontWeight ? `font-weight:${tokenStyle.fontWeight}` : ""}"`
+        : ""
+    }>${escapeHTML(token.value.replace("\n", ""))}</span>`;
   }
 
-  return `<pre${theme && (theme.bg || theme.fg) ? ` style="${theme.bg ? `background-color:${theme.bg};` : ""}${theme.fg ? `color:${theme.fg};` : ""}"` : ""}><code>${highlightedCode}</code></pre>`;
+  highlightedCode = highlightedCode
+    .split("\n")
+    .map((line) => `<span class="line">${line}</span>`)
+    .join("\n");
+
+  return `<pre${
+    theme && (theme.bg || theme.fg)
+      ? ` style="${theme.bg ? `background-color:${theme.bg};` : ""}${
+          theme.fg ? `color:${theme.fg};` : ""
+        }"`
+      : ""
+  }><code>${highlightedCode}</code></pre>`;
 }
