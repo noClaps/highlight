@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.1.5
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.4...v0.1.5)
+
+### 🩹 Fixes
+
+- Change query import path to be relative to file ([17ada54](https://gitlab.com/noClaps/highlight/commit/17ada54))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.1.4
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.3...v0.1.4)
