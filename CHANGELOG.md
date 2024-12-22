@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.1.3
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.2...v0.1.3)
+
+### 🩹 Fixes
+
+- Add types to `highlight()` and `bundledLanguages` ([504f935](https://gitlab.com/noClaps/highlight/commit/504f935))
+
+### 🤖 CI
+
+- Remove build script ([ba20850](https://gitlab.com/noClaps/highlight/commit/ba20850))
+- Add build queries step ([eafb4a6](https://gitlab.com/noClaps/highlight/commit/eafb4a6))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.1.2
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.1.1...v0.1.2)
