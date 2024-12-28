@@ -1,76 +1,25 @@
 {
   "name": "@noclaps/highlight",
   "version": "0.2.1",
-  "dependencies": {
-    "tree-sitter": "^0.22.1",
-    "tree-sitter-bash": "^0.23.3",
-    "tree-sitter-c": "^0.23.4",
-    "tree-sitter-c-sharp": "^0.23.1",
-    "tree-sitter-cpp": "^0.23.4",
-    "tree-sitter-css": "^0.23.1",
-    "tree-sitter-glsl": "^0.1.9",
-    "tree-sitter-go": "^0.23.4",
-    "tree-sitter-haskell": "^0.23.1",
-    "tree-sitter-html": "^0.23.2",
-    "tree-sitter-java": "^0.23.5",
-    "tree-sitter-javascript": "^0.23.1",
-    "tree-sitter-jsdoc": "^0.23.2",
-    "tree-sitter-json": "^0.24.8",
-    "tree-sitter-julia": "^0.23.1",
-    "tree-sitter-ocaml": "^0.23.2",
-    "tree-sitter-php": "^0.23.11",
-    "tree-sitter-python": "^0.23.5",
-    "tree-sitter-regex": "^0.24.3",
-    "tree-sitter-ruby": "^0.23.1",
-    "tree-sitter-rust": "^0.23.2",
-    "tree-sitter-scala": "^0.23.3",
-    "tree-sitter-typescript": "^0.23.2"
-  },
-  "trustedDependencies": [
-    "tree-sitter",
-    "tree-sitter-bash",
-    "tree-sitter-c",
-    "tree-sitter-c-sharp",
-    "tree-sitter-cpp",
-    "tree-sitter-css",
-    "tree-sitter-glsl",
-    "tree-sitter-go",
-    "tree-sitter-haskell",
-    "tree-sitter-html",
-    "tree-sitter-java",
-    "tree-sitter-javascript",
-    "tree-sitter-jsdoc",
-    "tree-sitter-json",
-    "tree-sitter-julia",
-    "tree-sitter-ocaml",
-    "tree-sitter-php",
-    "tree-sitter-python",
-    "tree-sitter-regex",
-    "tree-sitter-ruby",
-    "tree-sitter-rust",
-    "tree-sitter-scala",
-    "tree-sitter-typescript"
-  ],
-  "type": "module",
   "devDependencies": {
+    "@napi-rs/cli": "^2.18.4",
     "@types/bun": "^1.1.14"
   },
   "scripts": {
-    "build-queries": "bun run scripts/build-queries.ts"
+    "build": "napi build --release ./dist --platform"
   },
-  "patchedDependencies": {
-    "tree-sitter-bash@0.23.3": "patches/tree-sitter-bash@0.23.3.patch",
-    "tree-sitter-c@0.23.4": "patches/tree-sitter-c@0.23.4.patch",
-    "tree-sitter-css@0.23.1": "patches/tree-sitter-css@0.23.1.patch",
-    "tree-sitter-go@0.23.4": "patches/tree-sitter-go@0.23.4.patch",
-    "tree-sitter-html@0.23.2": "patches/tree-sitter-html@0.23.2.patch",
-    "tree-sitter-javascript@0.23.1": "patches/tree-sitter-javascript@0.23.1.patch",
-    "tree-sitter-ocaml@0.23.2": "patches/tree-sitter-ocaml@0.23.2.patch",
-    "tree-sitter-php@0.23.11": "patches/tree-sitter-php@0.23.11.patch",
-    "tree-sitter-python@0.23.5": "patches/tree-sitter-python@0.23.5.patch",
-    "tree-sitter-ruby@0.23.1": "patches/tree-sitter-ruby@0.23.1.patch",
-    "tree-sitter-rust@0.23.2": "patches/tree-sitter-rust@0.23.2.patch",
-    "tree-sitter-scala@0.23.3": "patches/tree-sitter-scala@0.23.3.patch",
-    "tree-sitter-java@0.23.5": "patches/tree-sitter-java@0.23.5.patch"
-  }
+  "napi": {
+    "name": "highlight",
+    "triples": {
+      "default": true,
+      "additional": [
+        "x86_64-unknown-linux-musl",
+        "aarch64-unknown-linux-gnu",
+        "aarch64-unknown-linux-musl",
+        "aarch64-pc-windows-msvc",
+        "aarch64-apple-darwin"
+      ]
+    }
+  },
+  "type": "module"
 }

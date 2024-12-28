@@ -1,6 +1,9 @@
 # Generated files
-highlights
+dist/
 
 # Testing files
 highlight.json
 out.html
+
+# Added by cargo
+target/
