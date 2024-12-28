@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.3.1
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.0...v0.3.1)
+
+### 🩹 Fixes
+
+- Export symbols from index.ts ([11fd454](https://gitlab.com/noClaps/highlight/commit/11fd454))
+- Add return type for highlight function ([8d7dd40](https://gitlab.com/noClaps/highlight/commit/8d7dd40))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.3.0
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.2.1...v0.2.2)
