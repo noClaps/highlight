@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v0.3.0
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.2.1...v0.2.2)
+
+### 🚀 Enhancements
+
+- Use NAPI-RS for package ([cdc6e0d](https://gitlab.com/noClaps/highlight/commit/cdc6e0d))
+
+### 🏡 Chore
+
+- Remove highlights directory ([c62a86f](https://gitlab.com/noClaps/highlight/commit/c62a86f))
+- Ignore generated directories ([800d0b3](https://gitlab.com/noClaps/highlight/commit/800d0b3))
+- Update dependencies ([030eda5](https://gitlab.com/noClaps/highlight/commit/030eda5))
+- Remove highlights directory from .gitattributes ([457435d](https://gitlab.com/noClaps/highlight/commit/457435d))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.2.1
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.2.0...v0.2.1)
