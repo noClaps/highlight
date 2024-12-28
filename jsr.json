@@ -5,8 +5,7 @@
   "exports": "./index.ts",
   "publish": {
     "include": [
-      "highlights",
-      "src/**/*.ts",
+      "dist",
       "bun.lockb",
       "index.ts",
       "LICENSE",
