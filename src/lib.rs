@@ -82,9 +82,6 @@ fn get_language(language: String) -> HighlightConfiguration {
         "ql" => tree_sitter_ql::LANGUAGE.into(),
         "cpp" => tree_sitter_cpp::LANGUAGE.into(),
         "c++" => tree_sitter_cpp::LANGUAGE.into(),
-        "csharp" => tree_sitter_c_sharp::LANGUAGE.into(),
-        "c#" => tree_sitter_c_sharp::LANGUAGE.into(),
-        "cs" => tree_sitter_c_sharp::LANGUAGE.into(),
         "css" => tree_sitter_css::LANGUAGE.into(),
         "ejs" => tree_sitter_embedded_template::LANGUAGE.into(),
         "erb" => tree_sitter_embedded_template::LANGUAGE.into(),
@@ -99,8 +96,6 @@ fn get_language(language: String) -> HighlightConfiguration {
         "jsx" => tree_sitter_javascript::LANGUAGE.into(),
         "jsdoc" => tree_sitter_jsdoc::LANGUAGE.into(),
         "json" => tree_sitter_json::LANGUAGE.into(),
-        "julia" => tree_sitter_julia::LANGUAGE.into(),
-        "jl" => tree_sitter_julia::LANGUAGE.into(),
         "ml" => tree_sitter_ocaml::LANGUAGE_OCAML.into(),
         "ocaml" => tree_sitter_ocaml::LANGUAGE_OCAML.into(),
         "ocaml_interface" => tree_sitter_ocaml::LANGUAGE_OCAML_INTERFACE.into(),
@@ -123,7 +118,6 @@ fn get_language(language: String) -> HighlightConfiguration {
         "tsx" => tree_sitter_typescript::LANGUAGE_TSX.into(),
         "typescript" => tree_sitter_typescript::LANGUAGE_TYPESCRIPT.into(),
         "ts" => tree_sitter_typescript::LANGUAGE_TYPESCRIPT.into(),
-        "verilog" => tree_sitter_verilog::LANGUAGE.into(),
         _ => panic!("Language not supported!"),
     };
 
