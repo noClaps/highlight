@@ -47,14 +47,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          registry-url: "https://npm.zerolimits.dev"
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.versions.target }}
       - uses: mlugg/setup-zig@v1
-      - uses: actions/setup-node@v4
-        with:
-          registry-url: "https://npm.zerolimits.dev"
       - run: bun install
       - run: mkdir dist
       - run: bun run build --target ${{ matrix.versions.target }}
@@ -65,6 +62,8 @@ jobs:
           path: dist/
       - run: cd packages/${{ matrix.versions.out_dir }}/
       - run: bun publish
+        env:
+          BUN_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
   publish:
     needs: build
@@ -79,7 +78,8 @@ jobs:
           path: dist/
           merge-multiple: true
       - uses: oven-sh/setup-bun@v2
-      - uses: actions/setup-node@v4
         with:
           registry-url: "https://npm.zerolimits.dev"
       - run: bun publish
+        env:
+          BUN_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
