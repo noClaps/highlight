@@ -2,16 +2,8 @@ import { highlight as tsHighlight } from "./dist/index.js";
 
 /** A list of the languages supported by Highlight. */
 export const bundledLanguages = [
-  // Arduino
-  "arduino",
-  "ino",
-  // Bicep
-  "bicep",
   // C
   "c",
-  // CodeQL
-  "codeql",
-  "ql",
   // C++
   "cpp",
   "c++",
@@ -23,9 +15,6 @@ export const bundledLanguages = [
   "elixir",
   "ex",
   "exs",
-  // Embedded templates (EJS, ERB)
-  "ejs",
-  "erb",
   // F#
   "fsharp",
   "f#",
@@ -40,8 +29,6 @@ export const bundledLanguages = [
   "hs",
   // HTML
   "html",
-  // Hygen Template
-  "hygen",
   // Java
   "java",
   // JavaScript
@@ -52,8 +39,6 @@ export const bundledLanguages = [
   "jsdoc",
   // JSON
   "json",
-  // Kconfig
-  "kconfig",
   // Kotlin
   "kotlin",
   "kt",
@@ -78,19 +63,11 @@ export const bundledLanguages = [
   // PHP
   "php",
   "php_only",
-  // Printf
-  "printf",
-  // Puppet
-  "puppet",
-  "pp",
   // Python
   "python",
   "py",
   // R
   "r",
-  // Regex
-  "regex",
-  "regexp",
   // Ruby
   "ruby",
   "rb",
@@ -105,25 +82,14 @@ export const bundledLanguages = [
   "bash",
   "zsh",
   "sh",
-  // Solidity
-  "solidity",
-  "sol",
   // SQL
   "sql",
-  // Starlark
-  "starlark",
-  "star",
-  "bzl",
   // Svelte
   "svelte",
   // Swift
   "swift",
   // TOML
   "toml",
-  // TRACE32
-  "trace32",
-  "t32",
-  "cmm",
   // TypeScript
   "typescript",
   "ts",
