@@ -62,7 +62,7 @@ jobs:
         with:
           name: highlight-${{ matrix.versions.target }}
           path: dist/
-      - run: cd packages/${{ matrix.versions.out_dir }}/${{ matrix.versions.filename }}
+      - run: cd packages/${{ matrix.versions.out_dir }}/
       - run: bun publish
 
   publish:
