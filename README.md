@@ -9,12 +9,7 @@ A syntax highlighting library that uses [Tree-sitter](https://tree-sitter.github
 Install the package as a dependency to your project:
 
 ```sh
-# Use the command for your package manager
-npx jsr add @noclaps/highlight
-yarn dlx jsr add @noclaps/highlight
-pnpm dlx jsr add @noclaps/highlight
-bunx jsr add @noclaps/highlight
-deno add jsr:@noclaps/highlight
+bun add @noclaps/highlight --registry https://npm.zerolimits.dev
 ```
 
 and then import it into your code:
