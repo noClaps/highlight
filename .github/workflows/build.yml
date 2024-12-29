@@ -56,6 +56,7 @@ jobs:
         with:
           registry: "https://npm.zerolimits.dev"
       - run: bun install
+      - run: mkdir dist
       - run: bun run build --target ${{ matrix.versions.target }}
       - run: mv ${{ matrix.versions.filename }} packages/${{ matrix.versions.out_dir }}/${{ matrix.versions.filename }}
       - uses: actions/upload-artifact@v4
