@@ -1,6 +1,33 @@
 # Changelog
 
 
+## v0.4.0
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.1...v0.4.0)
+
+### 🚀 Enhancements
+
+- ⚠️  Remove languages without highlight queries ([0fc7a37](https://gitlab.com/noClaps/highlight/commit/0fc7a37))
+- Add support for more languages ([ec5ac4b](https://gitlab.com/noClaps/highlight/commit/ec5ac4b))
+- Add support for more languages ([0eebe10](https://gitlab.com/noClaps/highlight/commit/0eebe10))
+- Add support for more languages ([dc826f8](https://gitlab.com/noClaps/highlight/commit/dc826f8))
+
+### 🏡 Chore
+
+- Remove dist directory ([11bb2cd](https://gitlab.com/noClaps/highlight/commit/11bb2cd))
+
+### 🤖 CI
+
+- Remove bun install step ([9a06067](https://gitlab.com/noClaps/highlight/commit/9a06067))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Remove languages without highlight queries ([0fc7a37](https://gitlab.com/noClaps/highlight/commit/0fc7a37))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.3.1
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.0...v0.3.1)
