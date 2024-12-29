@@ -54,7 +54,7 @@ jobs:
       - uses: mlugg/setup-zig@v1
       - uses: actions/setup-node@v4
         with:
-          registry: "https://npm.zerolimits.dev"
+          registry-url: "https://npm.zerolimits.dev"
       - run: bun install
       - run: mkdir dist
       - run: bun run build --target ${{ matrix.versions.target }}
@@ -81,5 +81,5 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - uses: actions/setup-node@v4
         with:
-          registry: "https://npm.zerolimits.dev"
+          registry-url: "https://npm.zerolimits.dev"
       - run: bun publish
