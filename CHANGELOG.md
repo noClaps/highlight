@@ -1,53 +1,23 @@
 # Changelog
 
 
-## v0.4.0
+## v0.3.0
 
-[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.1...v0.4.0)
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.2.1...v0.3.0)
 
 ### 🚀 Enhancements
 
+- Use NAPI-RS for package ([cdc6e0d](https://gitlab.com/noClaps/highlight/commit/cdc6e0d))
 - ⚠️  Remove languages without highlight queries ([0fc7a37](https://gitlab.com/noClaps/highlight/commit/0fc7a37))
 - Add support for more languages ([ec5ac4b](https://gitlab.com/noClaps/highlight/commit/ec5ac4b))
 - Add support for more languages ([0eebe10](https://gitlab.com/noClaps/highlight/commit/0eebe10))
 - Add support for more languages ([dc826f8](https://gitlab.com/noClaps/highlight/commit/dc826f8))
-
-### 🏡 Chore
-
-- Remove dist directory ([11bb2cd](https://gitlab.com/noClaps/highlight/commit/11bb2cd))
-
-### 🤖 CI
-
-- Remove bun install step ([9a06067](https://gitlab.com/noClaps/highlight/commit/9a06067))
-
-#### ⚠️ Breaking Changes
-
-- ⚠️  Remove languages without highlight queries ([0fc7a37](https://gitlab.com/noClaps/highlight/commit/0fc7a37))
-
-### ❤️ Contributors
-
-- NoClaps <04plugs-bios@icloud.com>
-
-## v0.3.1
-
-[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.0...v0.3.1)
+- ⚠️  Remove languages to reduce output size ([d76b852](https://gitlab.com/noClaps/highlight/commit/d76b852))
 
 ### 🩹 Fixes
 
 - Export symbols from index.ts ([11fd454](https://gitlab.com/noClaps/highlight/commit/11fd454))
 - Add return type for highlight function ([8d7dd40](https://gitlab.com/noClaps/highlight/commit/8d7dd40))
-
-### ❤️ Contributors
-
-- NoClaps <04plugs-bios@icloud.com>
-
-## v0.3.0
-
-[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.2.1...v0.2.2)
-
-### 🚀 Enhancements
-
-- Use NAPI-RS for package ([cdc6e0d](https://gitlab.com/noClaps/highlight/commit/cdc6e0d))
 
 ### 🏡 Chore
 
@@ -55,6 +25,17 @@
 - Ignore generated directories ([800d0b3](https://gitlab.com/noClaps/highlight/commit/800d0b3))
 - Update dependencies ([030eda5](https://gitlab.com/noClaps/highlight/commit/030eda5))
 - Remove highlights directory from .gitattributes ([457435d](https://gitlab.com/noClaps/highlight/commit/457435d))
+- Remove dist directory ([11bb2cd](https://gitlab.com/noClaps/highlight/commit/11bb2cd))
+
+### 🤖 CI
+
+- Remove bun install step ([9a06067](https://gitlab.com/noClaps/highlight/commit/9a06067))
+- Remove some versions ([3af75b9](https://gitlab.com/noClaps/highlight/commit/3af75b9))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Remove languages without highlight queries ([0fc7a37](https://gitlab.com/noClaps/highlight/commit/0fc7a37))
+- ⚠️  Remove languages to reduce output size ([d76b852](https://gitlab.com/noClaps/highlight/commit/d76b852))
 
 ### ❤️ Contributors
 
