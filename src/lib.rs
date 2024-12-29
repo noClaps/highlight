@@ -17,6 +17,12 @@ fn get_highlight_query(language: String) -> String {
         tree_sitter_cpp::HIGHLIGHT_QUERY
     );
 
+    let hygen = format!(
+        "{}\n{}",
+        tree_sitter_embedded_template::HIGHLIGHTS_QUERY,
+        tree_sitter_hygen_template::HIGHLIGHTS_QUERY
+    );
+
     let jsx = format!(
         "{}\n{}",
         tree_sitter_javascript::HIGHLIGHT_QUERY,
@@ -49,10 +55,14 @@ fn get_highlight_query(language: String) -> String {
         "codeql" | "ql" => tree_sitter_ql::HIGHLIGHTS_QUERY.to_string(),
         "cpp" | "c++" => cpp,
         "css" => tree_sitter_css::HIGHLIGHTS_QUERY.to_string(),
+        "diff" => tree_sitter_diff::HIGHLIGHTS_QUERY.to_string(),
+        "elixir" | "ex" | "exs" => tree_sitter_elixir::HIGHLIGHTS_QUERY.to_string(),
         "ejs" | "erb" => tree_sitter_embedded_template::HIGHLIGHTS_QUERY.to_string(),
+        "fsharp" | "f#" | "fs" | "fsx" | "fsi" => tree_sitter_fsharp::HIGHLIGHTS_QUERY.to_string(),
         "go" | "golang" => tree_sitter_go::HIGHLIGHTS_QUERY.to_string(),
         "haskell" | "hs" => tree_sitter_haskell::HIGHLIGHTS_QUERY.to_string(),
         "html" => tree_sitter_html::HIGHLIGHTS_QUERY.to_string(),
+        "hygen" => hygen,
         "java" => tree_sitter_java::HIGHLIGHTS_QUERY.to_string(),
         "javascript" | "js" => tree_sitter_javascript::HIGHLIGHT_QUERY.to_string(),
         "jsx" => jsx,
@@ -72,16 +82,27 @@ fn get_highlight_query(language: String) -> String {
         "printf" => tree_sitter_printf::HIGHLIGHTS_QUERY.to_string(),
         "puppet" | "pp" => tree_sitter_puppet::HIGHLIGHTS_QUERY.to_string(),
         "python" | "py" => tree_sitter_python::HIGHLIGHTS_QUERY.to_string(),
+        "r" => tree_sitter_r::HIGHLIGHTS_QUERY.to_string(),
         "regex" | "regexp" => tree_sitter_regex::HIGHLIGHTS_QUERY.to_string(),
         "ruby" | "rb" => tree_sitter_ruby::HIGHLIGHTS_QUERY.to_string(),
         "rust" | "rs" => tree_sitter_rust::HIGHLIGHTS_QUERY.to_string(),
         "scala" => tree_sitter_scala::HIGHLIGHTS_QUERY.to_string(),
-        "shellscript" | "shell" | "bash" | "sh" => tree_sitter_bash::HIGHLIGHT_QUERY.to_string(),
+        "shellscript" | "shell" | "bash" | "zsh" | "sh" => {
+            tree_sitter_bash::HIGHLIGHT_QUERY.to_string()
+        }
+        "solidity" | "sol" => tree_sitter_solidity::HIGHLIGHT_QUERY.to_string(),
+        "sql" => tree_sitter_sequel::HIGHLIGHTS_QUERY.to_string(),
         "starlark" | "bzl" | "star" => tree_sitter_starlark::HIGHLIGHTS_QUERY.to_string(),
         "svelte" => svelte,
+        "swift" => tree_sitter_swift::HIGHLIGHTS_QUERY.to_string(),
         "toml" => tree_sitter_toml_ng::HIGHLIGHTS_QUERY.to_string(),
+        "trace32" | "t32" | "cmm" => tree_sitter_t32::HIGHLIGHTS_QUERY.to_string(),
         "typescript" | "ts" => ts,
         "tsx" => tsx,
+        "xml" | "svg" | "xsd" | "xslt" | "xsl" | "rng" => {
+            tree_sitter_xml::XML_HIGHLIGHT_QUERY.to_string()
+        }
+        "dtd" => tree_sitter_xml::DTD_HIGHLIGHT_QUERY.to_string(),
         "yaml" | "yml" => tree_sitter_yaml::HIGHLIGHTS_QUERY.to_string(),
         "zig" => tree_sitter_zig::HIGHLIGHTS_QUERY.to_string(),
         _ => "".to_string(),
@@ -96,10 +117,15 @@ fn get_language(language: String) -> HighlightConfiguration {
         "codeql" | "ql" => tree_sitter_ql::LANGUAGE,
         "cpp" | "c++" => tree_sitter_cpp::LANGUAGE,
         "css" => tree_sitter_css::LANGUAGE,
+        "diff" => tree_sitter_diff::LANGUAGE,
+        "elixir" | "ex" | "exs" => tree_sitter_elixir::LANGUAGE,
         "ejs" | "erb" => tree_sitter_embedded_template::LANGUAGE,
+        "fsharp" | "f#" | "fs" | "fsx" => tree_sitter_fsharp::LANGUAGE_FSHARP,
+        "fsi" => tree_sitter_fsharp::LANGUAGE_SIGNATURE,
         "go" | "golang" => tree_sitter_go::LANGUAGE,
         "haskell" | "hs" => tree_sitter_haskell::LANGUAGE,
         "html" => tree_sitter_html::LANGUAGE,
+        "hygen" => tree_sitter_hygen_template::LANGUAGE,
         "java" => tree_sitter_java::LANGUAGE,
         "javascript" | "js" | "jsx" => tree_sitter_javascript::LANGUAGE,
         "jsdoc" => tree_sitter_jsdoc::LANGUAGE,
@@ -119,16 +145,23 @@ fn get_language(language: String) -> HighlightConfiguration {
         "printf" => tree_sitter_printf::LANGUAGE,
         "puppet" | "pp" => tree_sitter_puppet::LANGUAGE,
         "python" | "py" => tree_sitter_python::LANGUAGE,
+        "r" => tree_sitter_r::LANGUAGE,
         "regex" | "regexp" => tree_sitter_regex::LANGUAGE,
         "ruby" | "rb" => tree_sitter_ruby::LANGUAGE,
         "rust" | "rs" => tree_sitter_rust::LANGUAGE,
         "scala" => tree_sitter_scala::LANGUAGE,
-        "shellscript" | "shell" | "bash" | "sh" => tree_sitter_bash::LANGUAGE,
+        "shellscript" | "shell" | "bash" | "zsh" | "sh" => tree_sitter_bash::LANGUAGE,
+        "solidity" | "sol" => tree_sitter_solidity::LANGUAGE,
+        "sql" => tree_sitter_sequel::LANGUAGE,
         "starlark" | "bzl" | "star" => tree_sitter_starlark::LANGUAGE,
         "svelte" => tree_sitter_svelte_ng::LANGUAGE,
+        "swift" => tree_sitter_swift::LANGUAGE,
         "toml" => tree_sitter_toml_ng::LANGUAGE,
+        "trace32" | "t32" | "cmm" => tree_sitter_t32::LANGUAGE,
         "typescript" | "ts" => tree_sitter_typescript::LANGUAGE_TYPESCRIPT,
         "tsx" => tree_sitter_typescript::LANGUAGE_TSX,
+        "xml" | "svg" | "xsd" | "xslt" | "xsl" | "rng" => tree_sitter_xml::LANGUAGE_XML,
+        "dtd" => tree_sitter_xml::LANGUAGE_DTD,
         "yaml" | "yml" => tree_sitter_yaml::LANGUAGE,
         "zig" => tree_sitter_zig::LANGUAGE,
         _ => panic!("Language not supported!"),
@@ -138,10 +171,13 @@ fn get_language(language: String) -> HighlightConfiguration {
 
     let injections_query = match language.as_str() {
         "bicep" => tree_sitter_bicep::INJECTIONS_QUERY,
+        "elixir" | "ex" | "exs" => tree_sitter_elixir::INJECTIONS_QUERY,
         "ejs" => tree_sitter_embedded_template::INJECTIONS_EJS_QUERY,
         "erb" => tree_sitter_embedded_template::INJECTIONS_ERB_QUERY,
+        "fsharp" | "f#" | "fs" | "fsx" | "fsi" => tree_sitter_fsharp::INJECTIONS_QUERY,
         "haskell" | "hs" => tree_sitter_haskell::INJECTIONS_QUERY,
         "html" => tree_sitter_html::INJECTIONS_QUERY,
+        "hygen" => tree_sitter_hygen_template::INJECTIONS_QUERY,
         "javascript" | "js" | "jsx" => tree_sitter_javascript::INJECTIONS_QUERY,
         "kconfig" => tree_sitter_kconfig::INJECTIONS_QUERY,
         "lua" => tree_sitter_lua::INJECTIONS_QUERY,
@@ -153,12 +189,15 @@ fn get_language(language: String) -> HighlightConfiguration {
         "rust" | "rs" => tree_sitter_rust::INJECTIONS_QUERY,
         "starlark" | "bzl" | "star" => tree_sitter_starlark::INJECTIONS_QUERY,
         "svelte" => tree_sitter_svelte_ng::INJECTIONS_QUERY,
+        "swift" => tree_sitter_swift::INJECTIONS_QUERY,
+        "trace32" | "t32" | "cmm" => tree_sitter_t32::INJECTIONS_QUERY,
         "zig" => tree_sitter_zig::INJECTIONS_QUERY,
         _ => "",
     };
 
     let locals_query = match language.as_str() {
         "bicep" => tree_sitter_bicep::LOCALS_QUERY,
+        "fsharp" | "f#" | "fs" | "fsx" | "fsi" => tree_sitter_fsharp::LOCALS_QUERY,
         "haskell" | "hs" => tree_sitter_haskell::LOCALS_QUERY,
         "javascript" | "js" | "jsx" => tree_sitter_javascript::LOCALS_QUERY,
         "kconfig" => tree_sitter_kconfig::LOCALS_QUERY,
@@ -168,10 +207,14 @@ fn get_language(language: String) -> HighlightConfiguration {
         "ocaml" | "ml" | "ocaml_interface" | "ocaml_type" => tree_sitter_ocaml::LOCALS_QUERY,
         "odin" => tree_sitter_odin::LOCALS_QUERY,
         "puppet" | "pp" => tree_sitter_puppet::LOCALS_QUERY,
+        "r" => tree_sitter_r::LOCALS_QUERY,
         "ruby" | "rb" => tree_sitter_ruby::LOCALS_QUERY,
         "scala" => tree_sitter_scala::LOCALS_QUERY,
+        "solidity" | "sol" => tree_sitter_solidity::LOCALS_QUERY,
         "starlark" | "bzl" | "star" => tree_sitter_starlark::LOCALS_QUERY,
         "svelte" => tree_sitter_svelte_ng::LOCALS_QUERY,
+        "swift" => tree_sitter_swift::LOCALS_QUERY,
+        "trace32" | "t32" | "cmm" => tree_sitter_t32::LOCALS_QUERY,
         "typescript" | "ts" | "tsx" => tree_sitter_typescript::LOCALS_QUERY,
         _ => "",
     };

@@ -17,9 +17,21 @@ export const bundledLanguages = [
   "c++",
   // CSS
   "css",
+  // Diff
+  "diff",
+  // Elixir
+  "elixir",
+  "ex",
+  "exs",
   // Embedded templates (EJS, ERB)
   "ejs",
   "erb",
+  // F#
+  "fsharp",
+  "f#",
+  "fs",
+  "fsx",
+  "fsi",
   // Go
   "go",
   "golang",
@@ -28,6 +40,8 @@ export const bundledLanguages = [
   "hs",
   // HTML
   "html",
+  // Hygen Template
+  "hygen",
   // Java
   "java",
   // JavaScript
@@ -72,6 +86,8 @@ export const bundledLanguages = [
   // Python
   "python",
   "py",
+  // R
+  "r",
   // Regex
   "regex",
   "regexp",
@@ -87,19 +103,39 @@ export const bundledLanguages = [
   "shellscript",
   "shell",
   "bash",
+  "zsh",
   "sh",
+  // Solidity
+  "solidity",
+  "sol",
+  // SQL
+  "sql",
   // Starlark
   "starlark",
   "star",
   "bzl",
   // Svelte
   "svelte",
+  // Swift
+  "swift",
   // TOML
   "toml",
+  // TRACE32
+  "trace32",
+  "t32",
+  "cmm",
   // TypeScript
   "typescript",
   "ts",
   "tsx",
+  // XML/DTD
+  "xml",
+  "svg",
+  "xsd",
+  "xslt",
+  "xsl",
+  "rng",
+  "dtd",
   // YAML
   "yaml",
   "yml",
