@@ -1,0 +1,19 @@
+{
+  "name": "@noclaps/highlight-win32-arm64-msvc",
+  "version": "0.3.0",
+  "type": "module",
+  "exports": "./highlight.win32-arm64-msvc.node",
+  "files": [
+    "highlight.win32-arm64-msvc.node",
+    "package.json"
+  ],
+  "os": [
+    "win32"
+  ],
+  "libc": [
+    "msvc"
+  ],
+  "cpu": [
+    "arm64"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "@noclaps/highlight-linux-x64-gnu",
+  "version": "0.3.0",
+  "type": "module",
+  "exports": "./highlight.linux-x64-gnu.node",
+  "files": [
+    "highlight.linux-x64-gnu.node",
+    "package.json"
+  ],
+  "os": [
+    "linux"
+  ],
+  "libc": [
+    "glibc"
+  ],
+  "cpu": [
+    "x64"
+  ]
+}

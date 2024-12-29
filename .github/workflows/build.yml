@@ -9,14 +9,38 @@ jobs:
     strategy:
       matrix:
         versions:
-          - os: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-          # - os: ubuntu-latest
-          #   target: aarch64-unknown-linux-gnu
           - os: macos-latest
             target: aarch64-apple-darwin
-          # - os: windows-latest
-          #   target: x86_64-pc-windows-msvc
+            filename: highlight.darwin-arm64.node
+            out_dir: darwin-arm64
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            filename: highlight.darwin-x64.node
+            out_dir: darwin-x64
+          - os: ubuntu-latest
+            target: aarch64-unknown-linux-gnu
+            filename: highlight.linux-arm64-gnu.node
+            out_dir: linux-arm64-gnu
+          - os: ubuntu-latest
+            target: aarch64-unknown-linux-musl
+            filename: highlight.linux-arm64-musl.node
+            out_dir: linux-arm64-musl
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            filename: highlight.linux-x64-gnu.node
+            out_dir: linux-x64-gnu
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+            filename: highlight.linux-x64-musl.node
+            out_dir: linux-x64-musl
+          - os: windows-latest
+            target: aarch64-pc-windows-msvc
+            filename: highlight.win32-arm64-msvc.node
+            out_dir: win32-arm64-msvc
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+            filename: highlight.win32-x64-msvc.node
+            out_dir: win32-x64-msvc
     runs-on: ${{ matrix.versions.os }}
     name: ${{ matrix.versions.os }}-${{ matrix.versions.target }}
     steps:
@@ -28,12 +52,18 @@ jobs:
         with:
           targets: ${{ matrix.versions.target }}
       - uses: mlugg/setup-zig@v1
+      - uses: actions/setup-node@v4
+        with:
+          registry: "https://npm.zerolimits.dev"
       - run: bun install
       - run: bun run build --target ${{ matrix.versions.target }}
+      - run: mv ${{ matrix.versions.filename }} packages/${{ matrix.versions.out_dir }}/${{ matrix.versions.filename }}
       - uses: actions/upload-artifact@v4
         with:
           name: highlight-${{ matrix.versions.target }}
           path: dist/
+      - run: cd packages/${{ matrix.versions.out_dir }}/${{ matrix.versions.filename }}
+      - run: bun publish
 
   publish:
     needs: build
@@ -48,6 +78,7 @@ jobs:
           path: dist/
           merge-multiple: true
       - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
         with:
-          bun-version: latest
-      - run: bunx jsr publish
+          registry: "https://npm.zerolimits.dev"
+      - run: bun publish

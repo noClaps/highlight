@@ -1,0 +1,19 @@
+{
+  "name": "@noclaps/highlight-linux-arm64-gnu",
+  "version": "0.3.0",
+  "type": "module",
+  "exports": "./highlight.linux-arm64-gnu.node",
+  "files": [
+    "highlight.linux-arm64-gnu.node",
+    "package.json"
+  ],
+  "os": [
+    "linux"
+  ],
+  "libc": [
+    "glibc"
+  ],
+  "cpu": [
+    "arm64"
+  ]
+}

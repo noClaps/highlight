@@ -1,0 +1,16 @@
+{
+  "name": "@noclaps/highlight-darwin-arm64",
+  "version": "0.3.0",
+  "type": "module",
+  "exports": "./highlight.darwin-arm64.node",
+  "files": [
+    "highlight.darwin-arm64.node",
+    "package.json"
+  ],
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "arm64"
+  ]
+}
