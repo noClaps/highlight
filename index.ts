@@ -2,47 +2,91 @@ import { highlight as tsHighlight } from "./dist/index.js";
 
 /** A list of the languages supported by Highlight. */
 export const bundledLanguages = [
+  // Arduino
+  "arduino",
+  "ino",
+  // Bicep
+  "bicep",
+  // C
   "c",
+  // CodeQL
   "codeql",
   "ql",
+  // C++
   "cpp",
   "c++",
+  // CSS
   "css",
+  // Embedded templates (EJS, ERB)
   "ejs",
   "erb",
+  // Go
   "go",
   "golang",
+  // Haskell
   "haskell",
   "hs",
+  // HTML
   "html",
+  // Java
   "java",
+  // JavaScript
   "javascript",
   "js",
   "jsx",
+  // JSDoc
   "jsdoc",
+  // JSON
   "json",
-  "ml",
+  // Kconfig
+  "kconfig",
+  // Luau
+  "luau",
+  // Make
+  "make",
+  "makefile",
+  // Objective-C
+  "objc",
+  "objective-c",
+  // OCaml
   "ocaml",
+  "ml",
   "ocaml_interface",
   "ocaml_type",
+  // Odin
+  "odin",
+  // PHP
   "php",
   "php_only",
+  // Puppet
+  "puppet",
+  "pp",
+  // Python
   "python",
   "py",
+  // Regex
   "regex",
   "regexp",
+  // Ruby
   "ruby",
   "rb",
+  // Rust
   "rust",
   "rs",
+  // Scala
   "scala",
+  // Shell
   "shellscript",
   "shell",
   "bash",
   "sh",
-  "tsx",
+  // TypeScript
   "typescript",
   "ts",
+  "tsx",
+  // Zig
+  "zig",
+  // Plain
   "plaintext",
   "plain",
   "text",
