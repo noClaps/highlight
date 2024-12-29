@@ -40,6 +40,12 @@ export const bundledLanguages = [
   "json",
   // Kconfig
   "kconfig",
+  // Kotlin
+  "kotlin",
+  "kt",
+  "kts",
+  // Lua
+  "lua",
   // Luau
   "luau",
   // Make
@@ -58,6 +64,8 @@ export const bundledLanguages = [
   // PHP
   "php",
   "php_only",
+  // Printf
+  "printf",
   // Puppet
   "puppet",
   "pp",
@@ -80,10 +88,21 @@ export const bundledLanguages = [
   "shell",
   "bash",
   "sh",
+  // Starlark
+  "starlark",
+  "star",
+  "bzl",
+  // Svelte
+  "svelte",
+  // TOML
+  "toml",
   // TypeScript
   "typescript",
   "ts",
   "tsx",
+  // YAML
+  "yaml",
+  "yml",
   // Zig
   "zig",
   // Plain

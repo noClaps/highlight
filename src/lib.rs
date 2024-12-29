@@ -23,6 +23,12 @@ fn get_highlight_query(language: String) -> String {
         tree_sitter_javascript::JSX_HIGHLIGHT_QUERY
     );
 
+    let svelte = format!(
+        "{}\n{}",
+        tree_sitter_html::HIGHLIGHTS_QUERY,
+        tree_sitter_svelte_ng::HIGHLIGHTS_QUERY
+    );
+
     let ts = format!(
         "{}\n{}",
         tree_sitter_javascript::HIGHLIGHT_QUERY,
@@ -53,6 +59,8 @@ fn get_highlight_query(language: String) -> String {
         "jsdoc" => tree_sitter_jsdoc::HIGHLIGHTS_QUERY.to_string(),
         "json" => tree_sitter_json::HIGHLIGHTS_QUERY.to_string(),
         "kconfig" => tree_sitter_kconfig::HIGHLIGHTS_QUERY.to_string(),
+        "kotlin" | "kt" | "kts" => tree_sitter_kotlin_sg::HIGHLIGHTS_QUERY.to_string(),
+        "lua" => tree_sitter_lua::HIGHLIGHTS_QUERY.to_string(),
         "luau" => tree_sitter_luau::HIGHLIGHTS_QUERY.to_string(),
         "make" | "makefile" => tree_sitter_make::HIGHLIGHTS_QUERY.to_string(),
         "objc" | "objective-c" => tree_sitter_objc::HIGHLIGHTS_QUERY.to_string(),
@@ -61,6 +69,7 @@ fn get_highlight_query(language: String) -> String {
         }
         "odin" => tree_sitter_odin::HIGHLIGHTS_QUERY.to_string(),
         "php" | "php_only" => tree_sitter_php::HIGHLIGHTS_QUERY.to_string(),
+        "printf" => tree_sitter_printf::HIGHLIGHTS_QUERY.to_string(),
         "puppet" | "pp" => tree_sitter_puppet::HIGHLIGHTS_QUERY.to_string(),
         "python" | "py" => tree_sitter_python::HIGHLIGHTS_QUERY.to_string(),
         "regex" | "regexp" => tree_sitter_regex::HIGHLIGHTS_QUERY.to_string(),
@@ -68,8 +77,12 @@ fn get_highlight_query(language: String) -> String {
         "rust" | "rs" => tree_sitter_rust::HIGHLIGHTS_QUERY.to_string(),
         "scala" => tree_sitter_scala::HIGHLIGHTS_QUERY.to_string(),
         "shellscript" | "shell" | "bash" | "sh" => tree_sitter_bash::HIGHLIGHT_QUERY.to_string(),
+        "starlark" | "bzl" | "star" => tree_sitter_starlark::HIGHLIGHTS_QUERY.to_string(),
+        "svelte" => svelte,
+        "toml" => tree_sitter_toml_ng::HIGHLIGHTS_QUERY.to_string(),
         "typescript" | "ts" => ts,
         "tsx" => tsx,
+        "yaml" | "yml" => tree_sitter_yaml::HIGHLIGHTS_QUERY.to_string(),
         "zig" => tree_sitter_zig::HIGHLIGHTS_QUERY.to_string(),
         _ => "".to_string(),
     }
@@ -92,6 +105,8 @@ fn get_language(language: String) -> HighlightConfiguration {
         "jsdoc" => tree_sitter_jsdoc::LANGUAGE,
         "json" => tree_sitter_json::LANGUAGE,
         "kconfig" => tree_sitter_kconfig::LANGUAGE,
+        "kotlin" | "kt" | "kts" => tree_sitter_kotlin_sg::LANGUAGE,
+        "lua" => tree_sitter_lua::LANGUAGE,
         "luau" => tree_sitter_luau::LANGUAGE,
         "make" | "makefile" => tree_sitter_make::LANGUAGE,
         "objc" | "objective-c" => tree_sitter_objc::LANGUAGE,
@@ -101,6 +116,7 @@ fn get_language(language: String) -> HighlightConfiguration {
         "odin" => tree_sitter_odin::LANGUAGE,
         "php" => tree_sitter_php::LANGUAGE_PHP,
         "php_only" => tree_sitter_php::LANGUAGE_PHP_ONLY,
+        "printf" => tree_sitter_printf::LANGUAGE,
         "puppet" | "pp" => tree_sitter_puppet::LANGUAGE,
         "python" | "py" => tree_sitter_python::LANGUAGE,
         "regex" | "regexp" => tree_sitter_regex::LANGUAGE,
@@ -108,8 +124,12 @@ fn get_language(language: String) -> HighlightConfiguration {
         "rust" | "rs" => tree_sitter_rust::LANGUAGE,
         "scala" => tree_sitter_scala::LANGUAGE,
         "shellscript" | "shell" | "bash" | "sh" => tree_sitter_bash::LANGUAGE,
-        "tsx" => tree_sitter_typescript::LANGUAGE_TSX,
+        "starlark" | "bzl" | "star" => tree_sitter_starlark::LANGUAGE,
+        "svelte" => tree_sitter_svelte_ng::LANGUAGE,
+        "toml" => tree_sitter_toml_ng::LANGUAGE,
         "typescript" | "ts" => tree_sitter_typescript::LANGUAGE_TYPESCRIPT,
+        "tsx" => tree_sitter_typescript::LANGUAGE_TSX,
+        "yaml" | "yml" => tree_sitter_yaml::LANGUAGE,
         "zig" => tree_sitter_zig::LANGUAGE,
         _ => panic!("Language not supported!"),
     };
@@ -124,12 +144,15 @@ fn get_language(language: String) -> HighlightConfiguration {
         "html" => tree_sitter_html::INJECTIONS_QUERY,
         "javascript" | "js" | "jsx" => tree_sitter_javascript::INJECTIONS_QUERY,
         "kconfig" => tree_sitter_kconfig::INJECTIONS_QUERY,
+        "lua" => tree_sitter_lua::INJECTIONS_QUERY,
         "luau" => tree_sitter_luau::INJECTIONS_QUERY,
         "objc" | "objective-c" => tree_sitter_objc::INJECTIONS_QUERY,
         "odin" => tree_sitter_odin::INJECTIONS_QUERY,
         "php" | "php_only" => tree_sitter_php::INJECTIONS_QUERY,
         "puppet" | "pp" => tree_sitter_puppet::INJECTIONS_QUERY,
         "rust" | "rs" => tree_sitter_rust::INJECTIONS_QUERY,
+        "starlark" | "bzl" | "star" => tree_sitter_starlark::INJECTIONS_QUERY,
+        "svelte" => tree_sitter_svelte_ng::INJECTIONS_QUERY,
         "zig" => tree_sitter_zig::INJECTIONS_QUERY,
         _ => "",
     };
@@ -139,6 +162,7 @@ fn get_language(language: String) -> HighlightConfiguration {
         "haskell" | "hs" => tree_sitter_haskell::LOCALS_QUERY,
         "javascript" | "js" | "jsx" => tree_sitter_javascript::LOCALS_QUERY,
         "kconfig" => tree_sitter_kconfig::LOCALS_QUERY,
+        "lua" => tree_sitter_lua::LOCALS_QUERY,
         "luau" => tree_sitter_luau::LOCALS_QUERY,
         "objc" | "objective-c" => tree_sitter_objc::LOCALS_QUERY,
         "ocaml" | "ml" | "ocaml_interface" | "ocaml_type" => tree_sitter_ocaml::LOCALS_QUERY,
@@ -146,6 +170,8 @@ fn get_language(language: String) -> HighlightConfiguration {
         "puppet" | "pp" => tree_sitter_puppet::LOCALS_QUERY,
         "ruby" | "rb" => tree_sitter_ruby::LOCALS_QUERY,
         "scala" => tree_sitter_scala::LOCALS_QUERY,
+        "starlark" | "bzl" | "star" => tree_sitter_starlark::LOCALS_QUERY,
+        "svelte" => tree_sitter_svelte_ng::LOCALS_QUERY,
         "typescript" | "ts" | "tsx" => tree_sitter_typescript::LOCALS_QUERY,
         _ => "",
     };
