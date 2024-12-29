@@ -1,6 +1,5 @@
 # Changelog
 
-
 ## v0.3.0
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.2.1...v0.3.0)
@@ -31,6 +30,7 @@
 
 - Remove bun install step ([9a06067](https://gitlab.com/noClaps/highlight/commit/9a06067))
 - Remove some versions ([3af75b9](https://gitlab.com/noClaps/highlight/commit/3af75b9))
+- Remove some versions ([6921b5e](https://gitlab.com/noClaps/highlight/commit/6921b5e))
 
 #### ⚠️ Breaking Changes
 
