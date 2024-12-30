@@ -64,7 +64,7 @@ jobs:
       - run: |
           cd packages/${{ matrix.versions.out_dir }}/
           cat ../../bunfig.toml
-          bun publish
+          bun publish --registry https://npm.zerolimits.dev
         env:
           BUN_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
@@ -84,6 +84,6 @@ jobs:
         with:
           registry-url: "https://npm.zerolimits.dev"
           scope: "@noclaps"
-      - run: bun publish
+      - run: bun publish --registry https://npm.zerolimits.dev
         env:
           BUN_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
