@@ -16,7 +16,8 @@
     "@noclaps/highlight-win32-x64-msvc": "^0.3.0"
   },
   "scripts": {
-    "build": "napi build --platform --js ./dist/index.js --dts ./dist/index.d.ts"
+    "build": "napi build --platform --js ./dist/index.js --dts ./dist/index.d.ts",
+    "bump": "bunx changelogen --bump && bun bump-version.ts"
   },
   "napi": {
     "name": "highlight",
