@@ -2,8 +2,6 @@
 
 A syntax highlighting library that uses [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) for incredibly quick parsing and highlighting.
 
-**NOTE**: There are probably bugs in the outputs of some of the languages. This is because I'm not really familiar with all the different languages and my fixes were best-effort, or I simply missed it in my testing. If you spot a bug in the language you want to use, you can open an issue and I'll try to fix it, or you can open a merge request with the fix yourself.
-
 ## Usage
 
 Install the package as a dependency to your project:
