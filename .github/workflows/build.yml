@@ -46,10 +46,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-      - uses: actions/setup-node@v4
-        with:
-          registry-url: "https://npm.zerolimits.dev"
-          scope: "@noclaps"
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.versions.target }}
@@ -62,7 +58,11 @@ jobs:
         with:
           name: highlight-${{ matrix.versions.target }}
           path: dist/
-      - run: bun publish --registry https://npm.zerolimits.dev
+      - uses: actions/setup-node@v4
+        with:
+          registry-url: "https://npm.zerolimits.dev"
+          scope: "@noclaps"
+      - run: npm publish --registry https://npm.zerolimits.dev
         working-directory: packages/${{ matrix.versions.out_dir }}/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
@@ -79,11 +79,10 @@ jobs:
         with:
           path: dist/
           merge-multiple: true
-      - uses: oven-sh/setup-bun@v2
       - uses: actions/setup-node@v4
         with:
           registry-url: "https://npm.zerolimits.dev"
           scope: "@noclaps"
-      - run: bun publish --registry https://npm.zerolimits.dev
+      - run: npm publish --registry https://npm.zerolimits.dev
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
