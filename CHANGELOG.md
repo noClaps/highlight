@@ -12,11 +12,16 @@
 - Add support for more languages ([0eebe10](https://gitlab.com/noClaps/highlight/commit/0eebe10))
 - Add support for more languages ([dc826f8](https://gitlab.com/noClaps/highlight/commit/dc826f8))
 - ⚠️  Remove languages to reduce output size ([d76b852](https://gitlab.com/noClaps/highlight/commit/d76b852))
+- ⚠️  Cut down on supported languages ([6981230](https://gitlab.com/noClaps/highlight/commit/6981230))
 
 ### 🩹 Fixes
 
 - Export symbols from index.ts ([11fd454](https://gitlab.com/noClaps/highlight/commit/11fd454))
 - Add return type for highlight function ([8d7dd40](https://gitlab.com/noClaps/highlight/commit/8d7dd40))
+
+### 📖 Documentation
+
+- Update install command ([a80704e](https://gitlab.com/noClaps/highlight/commit/a80704e))
 
 ### 🏡 Chore
 
@@ -25,17 +30,35 @@
 - Update dependencies ([030eda5](https://gitlab.com/noClaps/highlight/commit/030eda5))
 - Remove highlights directory from .gitattributes ([457435d](https://gitlab.com/noClaps/highlight/commit/457435d))
 - Remove dist directory ([11bb2cd](https://gitlab.com/noClaps/highlight/commit/11bb2cd))
+- Update Cargo.lock ([b18e59f](https://gitlab.com/noClaps/highlight/commit/b18e59f))
 
 ### 🤖 CI
 
 - Remove bun install step ([9a06067](https://gitlab.com/noClaps/highlight/commit/9a06067))
 - Remove some versions ([3af75b9](https://gitlab.com/noClaps/highlight/commit/3af75b9))
 - Remove some versions ([6921b5e](https://gitlab.com/noClaps/highlight/commit/6921b5e))
+- Publish to self-hosted registry ([34421cf](https://gitlab.com/noClaps/highlight/commit/34421cf))
+- Fix cd path ([d645089](https://gitlab.com/noClaps/highlight/commit/d645089))
+- Make dist directory before running build ([0cdd1d4](https://gitlab.com/noClaps/highlight/commit/0cdd1d4))
+- Fix action parameter ([16b1cf2](https://gitlab.com/noClaps/highlight/commit/16b1cf2))
+- Remove Node ([b94b48e](https://gitlab.com/noClaps/highlight/commit/b94b48e))
+- Change from cd to working-directory ([7904c91](https://gitlab.com/noClaps/highlight/commit/7904c91))
+- Run whoami to ensure login state ([46fbcee](https://gitlab.com/noClaps/highlight/commit/46fbcee))
+- Add scope to setup-bun ([a9f50a9](https://gitlab.com/noClaps/highlight/commit/a9f50a9))
+- Try printing bunfig.toml ([e8504d5](https://gitlab.com/noClaps/highlight/commit/e8504d5))
+- Cd, cat and publish all in one step ([65af98c](https://gitlab.com/noClaps/highlight/commit/65af98c))
+- Pass registry as command line flag ([a71913a](https://gitlab.com/noClaps/highlight/commit/a71913a))
+- Use Node action ([4f89534](https://gitlab.com/noClaps/highlight/commit/4f89534))
+- Check if packages are building ([caac867](https://gitlab.com/noClaps/highlight/commit/caac867))
+- Re-enable publishing ([d80dd9e](https://gitlab.com/noClaps/highlight/commit/d80dd9e))
+- Use npm to publish ([5ad1efe](https://gitlab.com/noClaps/highlight/commit/5ad1efe))
+- Don't stop everything else if one target fails ([42e2dd2](https://gitlab.com/noClaps/highlight/commit/42e2dd2))
 
 #### ⚠️ Breaking Changes
 
 - ⚠️  Remove languages without highlight queries ([0fc7a37](https://gitlab.com/noClaps/highlight/commit/0fc7a37))
 - ⚠️  Remove languages to reduce output size ([d76b852](https://gitlab.com/noClaps/highlight/commit/d76b852))
+- ⚠️  Cut down on supported languages ([6981230](https://gitlab.com/noClaps/highlight/commit/6981230))
 
 ### ❤️ Contributors
 
