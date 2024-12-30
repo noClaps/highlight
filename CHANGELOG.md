@@ -1,5 +1,26 @@
 # Changelog
 
+## v0.3.2
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.1...v0.3.2)
+
+### 🩹 Fixes
+
+- Escape HTML if no language is used ([605109e](https://gitlab.com/noClaps/highlight/commit/605109e))
+
+### 📖 Documentation
+
+- Remove incorrect outputs note ([bacbf2c](https://gitlab.com/noClaps/highlight/commit/bacbf2c))
+
+### 🏡 Chore
+
+- Remove Bun lockfile from bundle ([1f2f2d9](https://gitlab.com/noClaps/highlight/commit/1f2f2d9))
+- Add bump version script ([7a93742](https://gitlab.com/noClaps/highlight/commit/7a93742))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.3.1
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.0...v0.3.1)
