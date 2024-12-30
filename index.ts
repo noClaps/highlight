@@ -2,6 +2,8 @@ import { highlight as tsHighlight } from "./dist/index.js";
 
 /** A list of the languages supported by Highlight. */
 export const bundledLanguages = [
+  // Agda
+  "agda",
   // C
   "c",
   // C++
@@ -9,18 +11,6 @@ export const bundledLanguages = [
   "c++",
   // CSS
   "css",
-  // Diff
-  "diff",
-  // Elixir
-  "elixir",
-  "ex",
-  "exs",
-  // F#
-  "fsharp",
-  "f#",
-  "fs",
-  "fsx",
-  "fsi",
   // Go
   "go",
   "golang",
@@ -39,35 +29,17 @@ export const bundledLanguages = [
   "jsdoc",
   // JSON
   "json",
-  // Kotlin
-  "kotlin",
-  "kt",
-  "kts",
-  // Lua
-  "lua",
-  // Luau
-  "luau",
-  // Make
-  "make",
-  "makefile",
-  // Objective-C
-  "objc",
-  "objective-c",
   // OCaml
   "ocaml",
   "ml",
   "ocaml_interface",
   "ocaml_type",
-  // Odin
-  "odin",
   // PHP
   "php",
   "php_only",
   // Python
   "python",
   "py",
-  // R
-  "r",
   // Ruby
   "ruby",
   "rb",
@@ -82,31 +54,10 @@ export const bundledLanguages = [
   "bash",
   "zsh",
   "sh",
-  // SQL
-  "sql",
-  // Svelte
-  "svelte",
-  // Swift
-  "swift",
-  // TOML
-  "toml",
   // TypeScript
   "typescript",
   "ts",
   "tsx",
-  // XML/DTD
-  "xml",
-  "svg",
-  "xsd",
-  "xslt",
-  "xsl",
-  "rng",
-  "dtd",
-  // YAML
-  "yaml",
-  "yml",
-  // Zig
-  "zig",
   // Plain
   "plaintext",
   "plain",
