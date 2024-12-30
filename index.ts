@@ -1,5 +1,14 @@
 import { highlight as tsHighlight } from "./dist/index.js";
 
+function escapeHTML(input: string): string {
+  return input
+    .replaceAll(`&`, `&amp;`)
+    .replaceAll(`"`, `&quot;`)
+    .replaceAll(`'`, `&#x27;`)
+    .replaceAll(`<`, `&lt;`)
+    .replaceAll(`>`, `&gt;`);
+}
+
 /** A list of the languages supported by Highlight. */
 export const bundledLanguages = [
   // Agda
@@ -122,7 +131,7 @@ export function highlight(
   if (theme?.fg) globalStyle += `color:${theme.fg};`;
 
   if (["plaintext", "plain", "text", "txt"].includes(language)) {
-    return `<pre class="ts-highlight" style="${globalStyle}"><code>${code}</code></pre>`;
+    return `<pre class="ts-highlight" style="${globalStyle}"><code>${escapeHTML(code)}</code></pre>`;
   }
 
   let highlightedText = tsHighlight(
