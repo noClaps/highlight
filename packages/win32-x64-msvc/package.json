@@ -1,6 +1,6 @@
 {
   "name": "@noclaps/highlight-win32-x64-msvc",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "type": "module",
   "exports": "./highlight.win32-x64-msvc.node",
   "files": [

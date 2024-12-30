@@ -1,6 +1,6 @@
 {
   "name": "@noclaps/highlight",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "devDependencies": {
     "@napi-rs/cli": "^2.18.4",
     "@types/bun": "^1.1.14"

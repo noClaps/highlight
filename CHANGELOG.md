@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.3.1
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.0...v0.3.1)
+
+### 🏡 Chore
+
+- Update lockfile ([e0bfb74](https://gitlab.com/noClaps/highlight/commit/e0bfb74))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.3.0
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.2.1...v0.3.0)
