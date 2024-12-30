@@ -62,11 +62,10 @@ jobs:
         with:
           name: highlight-${{ matrix.versions.target }}
           path: dist/
-      # - run: |
-      #     cd packages/${{ matrix.versions.out_dir }}/
-      #     bun publish --registry https://npm.zerolimits.dev
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      - run: bun publish --registry https://npm.zerolimits.dev
+        working-directory: packages/${{ matrix.versions.out_dir }}/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
   publish:
     needs: build
@@ -80,11 +79,11 @@ jobs:
         with:
           path: dist/
           merge-multiple: true
-      # - uses: oven-sh/setup-bun@v2
-      # - uses: actions/setup-node@v4
-      #   with:
-      #     registry-url: "https://npm.zerolimits.dev"
-      #     scope: "@noclaps"
-      # - run: bun publish --registry https://npm.zerolimits.dev
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with:
+          registry-url: "https://npm.zerolimits.dev"
+          scope: "@noclaps"
+      - run: bun publish --registry https://npm.zerolimits.dev
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
