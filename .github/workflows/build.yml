@@ -61,9 +61,10 @@ jobs:
         with:
           name: highlight-${{ matrix.versions.target }}
           path: dist/
-      - run: cd packages/${{ matrix.versions.out_dir }}/
-      - run: cat ../../bunfig.toml
-      - run: bun publish
+      - run: |
+          cd packages/${{ matrix.versions.out_dir }}/
+          cat ../../bunfig.toml
+          bun publish
         env:
           BUN_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
