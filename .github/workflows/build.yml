@@ -46,6 +46,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
         with:
           registry-url: "https://npm.zerolimits.dev"
           scope: "@noclaps"
@@ -63,10 +64,9 @@ jobs:
           path: dist/
       - run: |
           cd packages/${{ matrix.versions.out_dir }}/
-          cat ../../bunfig.toml
           bun publish --registry https://npm.zerolimits.dev
         env:
-          BUN_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
   publish:
     needs: build
@@ -81,9 +81,10 @@ jobs:
           path: dist/
           merge-multiple: true
       - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
         with:
           registry-url: "https://npm.zerolimits.dev"
           scope: "@noclaps"
       - run: bun publish --registry https://npm.zerolimits.dev
         env:
-          BUN_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
