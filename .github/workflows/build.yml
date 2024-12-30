@@ -60,6 +60,9 @@ jobs:
         with:
           name: highlight-${{ matrix.versions.target }}
           path: dist/
+      - run: bun pm whoami
+        env:
+          BUN_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
       - run: bun publish
         working-directory: packages/${{ matrix.versions.out_dir }}/
         env:
