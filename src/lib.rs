@@ -1,7 +1,5 @@
+use napi_derive::napi;
 use tree_sitter_highlight::{Highlight, HighlightConfiguration, Highlighter, HtmlRenderer};
-
-#[macro_use]
-extern crate napi_derive;
 
 fn get_highlight_query(language: String) -> String {
     let cpp = format!(
