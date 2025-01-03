@@ -5,8 +5,12 @@
     "@napi-rs/cli": "^3.0.0-alpha.65",
     "@types/bun": "^1.1.14"
   },
+  "optionalDependencies": {
+    "@noclaps/highlight-wasm32-wasi": "^0.3.2"
+  },
   "scripts": {
-    "build": "napi build --platform --esm --release --strip -o ./dist",
+    "artifacts": "napi artifacts -o .",
+    "build": "napi build --platform --release --strip",
     "bump": "bunx changelogen --bump && bun bump-version.ts"
   },
   "napi": {
@@ -16,10 +20,9 @@
     ]
   },
   "type": "module",
-  "exports": "./index.ts",
+  "exports": "./main.ts",
   "files": [
-    "dist",
-    "index.ts",
+    "main.ts",
     "LICENSE",
     "README.md",
     "package.json"
