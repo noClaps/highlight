@@ -5,16 +5,6 @@
     "@napi-rs/cli": "^3.0.0-alpha.65",
     "@types/bun": "^1.1.14"
   },
-  "optionalDependencies": {
-    "@noclaps/highlight-darwin-arm64": "^0.3.2",
-    "@noclaps/highlight-darwin-x64": "^0.3.2",
-    "@noclaps/highlight-linux-arm64-gnu": "^0.3.2",
-    "@noclaps/highlight-linux-arm64-musl": "^0.3.2",
-    "@noclaps/highlight-linux-x64-gnu": "^0.3.2",
-    "@noclaps/highlight-linux-x64-musl": "^0.3.2",
-    "@noclaps/highlight-win32-arm64-msvc": "^0.3.2",
-    "@noclaps/highlight-win32-x64-msvc": "^0.3.2"
-  },
   "scripts": {
     "build": "napi build --platform --esm --release --strip --js ./dist/index.js --dts ./dist/index.d.ts -o ./dist",
     "bump": "bunx changelogen --bump && bun bump-version.ts"
