@@ -11,7 +11,9 @@ jobs:
       - run: |
           clang --version
           clang -print-targets
-      - run: apt update && apt install gcc-multilib
+      - run: |
+          sudo apt update
+          sudo apt install gcc-multilib -y
       - run: rustup target add wasm32-wasip1
       - uses: oven-sh/setup-bun@v2
       - run: bun install
