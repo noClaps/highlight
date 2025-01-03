@@ -14,7 +14,10 @@
     "package.json"
   ],
   "napi": {
-    "binaryName": "highlight"
+    "binaryName": "highlight",
+    "targets": [
+      "wasm32-wasip1-threads"
+    ]
   },
   "scripts": {
     "build": "napi build --platform --release --strip -o ./dist",
