@@ -1,4 +1,4 @@
-import { highlight, type BundledLanguage, type Theme } from "./main.ts";
+import { highlight, type BundledLanguage, type Theme } from "./index.ts";
 
 const theme: Theme = {
   fg: "#fff",

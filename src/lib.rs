@@ -126,8 +126,6 @@ fn escape_html(input: String) -> String {
         .replace('>', "&gt;")
 }
 
-/// A list of the languages supported by Highlight.
-#[napi(js_name = "bundledLanguages")]
 pub const BUNDLED_LANGUAGES: [&str; 41] = [
     // Agda
     "agda",
@@ -238,7 +236,11 @@ const htmlOutput = highlight(code, "ts", theme);
 ```
 */
 #[napi]
-pub fn highlight(code: String, language: String, theme: Option<Theme>) -> String {
+pub fn highlight(
+    code: String,
+    #[napi(ts_arg_type = "BundledLanguage")] language: String,
+    theme: Option<Theme>,
+) -> String {
     if !BUNDLED_LANGUAGES.contains(&language.as_str()) {
         panic!("Language {} is not supported by Highlight", language);
     }

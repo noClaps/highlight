@@ -6,9 +6,10 @@
     "@napi-rs/wasm-runtime": "^0.2.6",
     "@types/bun": "^1.1.14"
   },
-  "exports": "./main.ts",
+  "exports": "./index.ts",
   "files": [
-    "main.ts",
+    "index.ts",
+    "dist",
     "LICENSE",
     "README.md",
     "package.json"
