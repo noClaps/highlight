@@ -7,11 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-25/wasi-sdk-25.0-x86_64-linux.tar.gz -O wasi-sdk.tar.gz
-      - run: tar -xf wasi-sdk.tar.gz
+      - uses: egon-tensin/setup-clang@v1
       - run: |
-          ls -al ./wasi-sdk/bin
-          ls -al ./wasi-sdk/share/wasi-sysroot
+          clang --version
+          clang -print-targets
       - run: rustup target add wasm32-wasip1
       - uses: oven-sh/setup-bun@v2
       - run: bun install
