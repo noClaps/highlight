@@ -6,7 +6,7 @@
     "@types/bun": "^1.1.14"
   },
   "scripts": {
-    "build": "napi build --platform --esm --release --strip --js ./dist/index.js --dts ./dist/index.d.ts -o ./dist",
+    "build": "napi build --platform --esm --release --strip -o ./dist",
     "bump": "bunx changelogen --bump && bun bump-version.ts"
   },
   "napi": {
