@@ -10,6 +10,8 @@ jobs:
       - run: |
           wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-25/wasi-sdk-25.0-x86_64-linux.tar.gz -O wasi-sdk.tar.gz
           tar xf wasi-sdk.tar.gz
+          ls -al ./wasi-sdk/bin
+          ls -al ./wasi-sdk/share/wasi-sysroot
       - run: rustup target add wasm32-wasip1
       - uses: oven-sh/setup-bun@v2
       - run: bun install
