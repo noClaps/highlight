@@ -23,7 +23,7 @@
   },
   "scripts": {
     "artifacts": "napi artifacts -o .",
-    "build": "napi build --platform --release",
+    "build": "napi build --platform --release --esm",
     "bump": "bunx changelogen --bump && bun bump-version.ts"
   },
   "type": "module"
