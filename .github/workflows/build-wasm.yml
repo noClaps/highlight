@@ -18,6 +18,7 @@ jobs:
       - run: |
           mkdir dist
           bun run build --target wasm32-wasip1-threads
+          echo "/** The type of bundled language used by the Highlight package */\nexport type BundledLanguage = string;" >> dist/index.d.ts
       - uses: actions/upload-artifact@v4
         with:
           path: dist

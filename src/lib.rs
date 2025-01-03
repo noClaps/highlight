@@ -1,4 +1,5 @@
 use napi_derive::napi;
+use std::collections::HashMap;
 use tree_sitter_highlight::{Highlight, HighlightConfiguration, Highlighter, HtmlRenderer};
 
 fn get_highlight_query(language: String) -> String {
@@ -116,9 +117,161 @@ fn get_language(language: String) -> HighlightConfiguration {
     .unwrap()
 }
 
+fn escape_html(input: String) -> String {
+    input
+        .replace('&', "&amp;")
+        .replace('"', "&quot;")
+        .replace("'", "&#x27;")
+        .replace('<', "&lt;")
+        .replace('>', "&gt;")
+}
+
+/// A list of the languages supported by Highlight.
+#[napi(js_name = "bundledLanguages")]
+pub const BUNDLED_LANGUAGES: [&str; 41] = [
+    // Agda
+    "agda",
+    // C
+    "c",
+    // C++
+    "cpp",
+    "c++",
+    // CSS
+    "css",
+    // Go
+    "go",
+    "golang",
+    // Haskell
+    "haskell",
+    "hs",
+    // HTML
+    "html",
+    // Java
+    "java",
+    // JavaScript
+    "javascript",
+    "js",
+    "jsx",
+    // JSDoc
+    "jsdoc",
+    // JSON
+    "json",
+    // OCaml
+    "ocaml",
+    "ml",
+    "ocaml_interface",
+    "ocaml_type",
+    // PHP
+    "php",
+    "php_only",
+    // Python
+    "python",
+    "py",
+    // Ruby
+    "ruby",
+    "rb",
+    // Rust
+    "rust",
+    "rs",
+    // Scala
+    "scala",
+    // Shell
+    "shellscript",
+    "shell",
+    "bash",
+    "zsh",
+    "sh",
+    // TypeScript
+    "typescript",
+    "ts",
+    "tsx",
+    // Plain
+    "plaintext",
+    "plain",
+    "text",
+    "txt",
+];
+
+#[napi(object)]
+#[derive(Clone)]
+pub struct HighlightType {
+    pub color: Option<String>,
+    #[napi(js_name = "fontStyle")]
+    pub font_style: Option<String>,
+    #[napi(js_name = "fontWeight")]
+    pub font_weight: Option<u16>, // "italic" | "normal" | "oblique"
+    #[napi(js_name = "backgroundColor")]
+    pub background_color: Option<String>,
+}
+
+/// The type of theme accepted by the Highlight package.
+#[napi(object)]
+pub struct Theme {
+    pub fg: Option<String>,
+    pub bg: Option<String>,
+    pub highlights: Option<HashMap<String, HighlightType>>,
+}
+
+/**
+A function that takes in code and highlights it.
+
+@param {string} code The code to highlight.
+@param {BundledLanguage} language The programming language the code is written in, must be one of the languages supported by Highlight.
+@param {Theme} [theme] A theme to syntax highlight with. There is no theme provided by default, so without one, no highlighting will be present.
+
+@returns An HTML string with the syntax highlighted colors inlined in `style` attributes.
+
+@example
+```ts
+import { highlight, type Theme } from "@noclaps/highlight";
+
+const theme: Theme = {
+... // Your theme here
+}
+
+const myCode = `
+console.log("Hello World");
+`
+
+const htmlOutput = highlight(code, "ts", theme);
+// <pre>...</pre> HTML output
+```
+*/
 #[napi]
-pub fn highlight(highlight_names: Vec<String>, language: String, code: String) -> String {
+pub fn highlight(code: String, language: String, theme: Option<Theme>) -> String {
+    if !BUNDLED_LANGUAGES.contains(&language.as_str()) {
+        panic!("Language {} is not supported by Highlight", language);
+    }
+    let theme = theme.unwrap_or(Theme {
+        fg: None,
+        bg: None,
+        highlights: None,
+    });
+
+    let mut global_style = "".to_string();
+    if theme.bg.is_some() {
+        global_style += format!("background-color:{};", theme.bg.unwrap_or_default()).as_str()
+    }
+    if theme.fg.is_some() {
+        global_style += format!("color:{};", theme.fg.unwrap_or_default()).as_str()
+    }
+
+    if language == "plaintext" || language == "plain" || language == "text" || language == "txt" {
+        return format!(
+            "<pre class=\"ts-highlight\" style=\"{}\"><code>{}</code></pre>",
+            global_style,
+            escape_html(code)
+        );
+    }
+
     let mut highlighter = Highlighter::new();
+    let highlight_names = theme
+        .highlights
+        .clone()
+        .unwrap_or_default()
+        .keys()
+        .cloned()
+        .collect::<Vec<String>>();
 
     let mut config = get_language(language);
     config.configure(&highlight_names);
@@ -136,5 +289,56 @@ pub fn highlight(highlight_names: Vec<String>, language: String, code: String) -
     let mut html_renderer = HtmlRenderer::new();
     let _ = html_renderer.render(highlights, code.as_bytes(), &attributes_callback);
 
-    html_renderer.lines().collect::<Vec<&str>>().join("")
+    let mut highlighted_text = html_renderer.lines().collect::<Vec<&str>>().join("");
+
+    for key in theme.highlights.clone().unwrap_or_default().keys().cloned() {
+        let mut style = "".to_string();
+        let highlights = theme
+            .highlights
+            .clone()
+            .unwrap_or_default()
+            .get(&key)
+            .unwrap_or(&HighlightType {
+                color: None,
+                font_style: None,
+                font_weight: None,
+                background_color: None,
+            })
+            .clone();
+
+        match highlights.color {
+            Some(color) => {
+                style += format!("color:{};", color).as_str();
+            }
+            None => (),
+        }
+        match highlights.font_style {
+            Some(font_style) => {
+                style += format!("font-style:{};", font_style).as_str();
+            }
+            None => (),
+        }
+        match highlights.font_weight {
+            Some(font_weight) => {
+                style += format!("font-weight:{};", font_weight).as_str();
+            }
+            None => (),
+        }
+        match highlights.background_color {
+            Some(background_color) => {
+                style += format!("background-color:{};", background_color).as_str();
+            }
+            None => (),
+        }
+
+        highlighted_text = highlighted_text.replace(
+            format!("<span class=\"{}\"", key).as_str(),
+            format!("<span class=\"{}\" style=\"{}\"", key, style).as_str(),
+        )
+    }
+
+    format!(
+        "<pre class=\"ts-highlight\" style=\"{}\"><code>{}</code></pre>",
+        global_style, highlighted_text
+    )
 }
