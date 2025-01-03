@@ -20,7 +20,10 @@
     "bump": "bunx changelogen --bump && bun bump-version.ts"
   },
   "napi": {
-    "binaryName": "highlight"
+    "binaryName": "highlight",
+    "targets": [
+      "wasm32-wasip1"
+    ]
   },
   "type": "module",
   "exports": "./index.ts",

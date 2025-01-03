@@ -21,7 +21,7 @@ jobs:
       - run: |
           mkdir dist/
           bun run build --target wasm32-wasip1
-          ls -al .
+          mv highlight.wasm32-wasi.wasm dist/
       - uses: actions/upload-artifact@v4
         with:
           path: dist/
