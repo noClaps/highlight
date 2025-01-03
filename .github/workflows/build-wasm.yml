@@ -16,9 +16,9 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - run: bun install
       - run: |
+          mkdir dist
           bun run build --target wasm32-wasip1
-          bun artifacts
           ls -al .
       - uses: actions/upload-artifact@v4
         with:
-          path: npm/wasm32-wasi
+          path: dist

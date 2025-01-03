@@ -3,10 +3,8 @@
   "version": "0.3.2",
   "devDependencies": {
     "@napi-rs/cli": "^3.0.0-alpha.65",
+    "@napi-rs/wasm-runtime": "^0.2.6",
     "@types/bun": "^1.1.14"
-  },
-  "optionalDependencies": {
-    "@noclaps/highlight-wasm32-wasi": "^0.3.2"
   },
   "exports": "./main.ts",
   "files": [
@@ -22,8 +20,7 @@
     ]
   },
   "scripts": {
-    "artifacts": "napi artifacts -o .",
-    "build": "napi build --platform --release --esm",
+    "build": "napi build --platform --esm --release --strip -o ./dist",
     "bump": "bunx changelogen --bump && bun bump-version.ts"
   },
   "type": "module"
