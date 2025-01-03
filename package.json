@@ -8,23 +8,23 @@
   "optionalDependencies": {
     "@noclaps/highlight-wasm32-wasi": "^0.3.2"
   },
-  "scripts": {
-    "artifacts": "napi artifacts -o .",
-    "build": "napi build --platform --release --strip",
-    "bump": "bunx changelogen --bump && bun bump-version.ts"
-  },
-  "napi": {
-    "binaryName": "highlight",
-    "targets": [
-      "wasm32-wasip1"
-    ]
-  },
-  "type": "module",
   "exports": "./main.ts",
   "files": [
     "main.ts",
     "LICENSE",
     "README.md",
     "package.json"
-  ]
+  ],
+  "napi": {
+    "binaryName": "highlight",
+    "targets": [
+      "wasm32-wasip1"
+    ]
+  },
+  "scripts": {
+    "artifacts": "napi artifacts -o .",
+    "build": "napi build --platform --release",
+    "bump": "bunx changelogen --bump && bun bump-version.ts"
+  },
+  "type": "module"
 }

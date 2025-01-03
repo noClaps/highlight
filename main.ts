@@ -1,4 +1,4 @@
-import { highlight as tsHighlight } from "./dist/index.js";
+import { highlight as tsHighlight } from "./index.js";
 
 function escapeHTML(input: string): string {
   return input
