@@ -1,0 +1,21 @@
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build-wasm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-25/wasi-sdk-25.0-x86_64-linux.tar.gz -O wasi-sdk.tar.gz
+          tar xf wasi-sdk.tar.gz
+      - run: rustup target add wasm32-wasip1
+      - run: |
+          export CC="./wasi-sdk/bin/clang"
+          export WASI_SYSROOT="./wasi-sdk/share/wasi-sysroot"
+          bun run build --target wasm32-wasip1
+          ls -al .
+      - uses: actions/upload-artifact@v4
+        with:
+          path: dist/

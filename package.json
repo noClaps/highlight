@@ -2,7 +2,7 @@
   "name": "@noclaps/highlight",
   "version": "0.3.2",
   "devDependencies": {
-    "@napi-rs/cli": "^2.18.4",
+    "@napi-rs/cli": "^3.0.0-alpha.65",
     "@types/bun": "^1.1.14"
   },
   "optionalDependencies": {
