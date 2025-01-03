@@ -7,13 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: egor-tensin/setup-clang@v1
+      - run: |
+          sudo apt update
+          sudo apt install clang llvm gcc-multilib -y
+          export CC=clang
+          export CXX=clang++
       - run: |
           clang --version
           clang -print-targets
-      - run: |
-          sudo apt update
-          sudo apt install gcc-multilib -y
       - run: rustup target add wasm32-wasip1
       - uses: oven-sh/setup-bun@v2
       - run: bun install
