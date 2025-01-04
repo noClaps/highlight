@@ -1,5 +1,28 @@
 # Changelog
 
+## v0.3.3
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.2...v0.3.3)
+
+### 🚀 Enhancements
+
+- Use release build and strip flag ([2be6bf7](https://gitlab.com/noClaps/highlight/commit/2be6bf7))
+
+### 🏡 Chore
+
+- Update dependencies ([ed64719](https://gitlab.com/noClaps/highlight/commit/ed64719))
+- Update dependencies ([eac075e](https://gitlab.com/noClaps/highlight/commit/eac075e))
+- Update dependencies ([ee9fedb](https://gitlab.com/noClaps/highlight/commit/ee9fedb))
+- Use exact version for optionalDependencies ([a9a8707](https://gitlab.com/noClaps/highlight/commit/a9a8707))
+
+### 🤖 CI
+
+- Use napi artifacts command to move files into place ([e317b43](https://gitlab.com/noClaps/highlight/commit/e317b43))
+
+### ❤️ Contributors
+
+- NoClaps <04plugs-bios@icloud.com>
+
 ## v0.3.2
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.1...v0.3.2)

@@ -1,19 +1,19 @@
 {
   "name": "@noclaps/highlight",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "devDependencies": {
     "@napi-rs/cli": "^2.18.4",
     "@types/bun": "^1.1.14"
   },
   "optionalDependencies": {
-    "@noclaps/highlight-darwin-arm64": "0.3.2",
-    "@noclaps/highlight-darwin-x64": "0.3.2",
-    "@noclaps/highlight-linux-arm64-gnu": "0.3.2",
-    "@noclaps/highlight-linux-arm64-musl": "0.3.2",
-    "@noclaps/highlight-linux-x64-gnu": "0.3.2",
-    "@noclaps/highlight-linux-x64-musl": "0.3.2",
-    "@noclaps/highlight-win32-arm64-msvc": "0.3.2",
-    "@noclaps/highlight-win32-x64-msvc": "0.3.2"
+    "@noclaps/highlight-darwin-arm64": "0.3.3",
+    "@noclaps/highlight-darwin-x64": "0.3.3",
+    "@noclaps/highlight-linux-arm64-gnu": "0.3.3",
+    "@noclaps/highlight-linux-arm64-musl": "0.3.3",
+    "@noclaps/highlight-linux-x64-gnu": "0.3.3",
+    "@noclaps/highlight-linux-x64-musl": "0.3.3",
+    "@noclaps/highlight-win32-arm64-msvc": "0.3.3",
+    "@noclaps/highlight-win32-x64-msvc": "0.3.3"
   },
   "scripts": {
     "artifacts": "napi artifacts -d ./dist --dist ./packages",
