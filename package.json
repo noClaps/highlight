@@ -16,7 +16,7 @@
     "@noclaps/highlight-win32-x64-msvc": "^0.3.2"
   },
   "scripts": {
-    "build": "napi build --platform --js ./dist/index.js --dts ./dist/index.d.ts",
+    "build": "napi build --platform --release --strip ./dist",
     "bump": "bunx changelogen --bump && bun bump-version.ts"
   },
   "napi": {
