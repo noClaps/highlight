@@ -1,1 +1,1 @@
-{"name":"@noclaps/highlight-darwin-arm64","version":"0.3.2","type":"module","exports":"./highlight.darwin-arm64.node","files":["highlight.darwin-arm64.node","package.json"],"os":["darwin"],"cpu":["arm64"]}
+{"name":"@noclaps/highlight-darwin-arm64","version":"0.3.2","os":["darwin"],"cpu":["arm64"],"main":"highlight.darwin-arm64.node","files":["highlight.darwin-arm64.node"]}

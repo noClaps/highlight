@@ -1,1 +1,1 @@
-{"name":"@noclaps/highlight-linux-arm64-musl","version":"0.3.2","type":"module","exports":"./highlight.linux-arm64-musl.node","files":["highlight.linux-arm64-musl.node","package.json"],"os":["linux"],"libc":["musl"],"cpu":["arm64"]}
+{"name":"@noclaps/highlight-linux-arm64-musl","version":"0.3.2","os":["linux"],"cpu":["arm64"],"main":"highlight.linux-arm64-musl.node","files":["highlight.linux-arm64-musl.node"],"libc":["musl"]}

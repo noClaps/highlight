@@ -1,1 +1,1 @@
-{"name":"@noclaps/highlight-darwin-x64","version":"0.3.2","type":"module","exports":"./highlight.darwin-x64.node","files":["highlight.darwin-x64.node","package.json"],"os":["darwin"],"cpu":["x64"]}
+{"name":"@noclaps/highlight-darwin-x64","version":"0.3.2","os":["darwin"],"cpu":["x64"],"main":"highlight.darwin-x64.node","files":["highlight.darwin-x64.node"]}
