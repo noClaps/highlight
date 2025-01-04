@@ -8,3 +8,12 @@ for (const pkg of packages) {
   json.version = version;
   Bun.write(`packages/${pkg}`, JSON.stringify(json));
 }
+
+const newPackageJSON = packageJSON;
+
+for (const dep in packageJSON.optionalDependencies) {
+  // @ts-ignore I'm looping through the deps, of course it's gonna be valid keys
+  newPackageJSON.optionalDependencies[dep] = version;
+}
+
+Bun.write("./package.json", JSON.stringify(newPackageJSON));
