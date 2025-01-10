@@ -1,9 +1,21 @@
 {
   "name": "@noclaps/highlight",
   "version": "0.3.3",
+  "description": "A syntax highlighting library that uses Tree-sitter",
+  "homepage": "https://gitlab.com/noClaps/highlight",
+  "bugs": {
+    "url": "https://gitlab.com/noClaps/highlight/-/issues"
+  },
+  "license": "0BSD",
+  "author": "noClaps <contact@zerolimits.dev> (https://zerolimits.dev)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/noClaps/highlight.git"
+  },
   "devDependencies": {
     "@napi-rs/cli": "^2.18.4",
-    "@types/bun": "^1.1.14"
+    "@types/bun": "^1.1.14",
+    "typescript": "^5.7.3"
   },
   "optionalDependencies": {
     "@noclaps/highlight-darwin-arm64": "0.3.3",
@@ -18,6 +30,7 @@
   "scripts": {
     "artifacts": "napi artifacts -d ./dist --dist ./packages",
     "build": "napi build --platform --release --strip ./dist",
+    "build:highlight": "bun build highlight.ts --minify --target node --outdir dist && tsc --project tsconfig.json",
     "bump": "bunx changelogen --bump && bun bump-version.ts"
   },
   "napi": {
@@ -34,12 +47,13 @@
     }
   },
   "type": "module",
-  "exports": "./index.ts",
+  "exports": "./dist/highlight.js",
+  "types": "./dist/highlight.d.ts",
   "files": [
-    "dist",
-    "index.ts",
-    "LICENSE",
-    "README.md",
-    "package.json"
-  ]
+    "dist/highlight.js",
+    "dist/highlight.d.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

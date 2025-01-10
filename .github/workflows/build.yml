@@ -63,10 +63,7 @@ jobs:
             dist/index.js
             dist/index.d.ts
       - uses: actions/setup-node@v4
-        with:
-          registry-url: "https://npm.zerolimits.dev"
-          scope: "@noclaps"
-      - run: npm publish --registry https://npm.zerolimits.dev
+      - run: npm publish
         working-directory: packages/${{ matrix.versions.out_dir }}/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
@@ -84,9 +81,10 @@ jobs:
           path: dist/
           merge-multiple: true
       - uses: actions/setup-node@v4
-        with:
-          registry-url: "https://npm.zerolimits.dev"
-          scope: "@noclaps"
-      - run: npm publish --registry https://npm.zerolimits.dev
+      - uses: oven-sh/setup-bun@v2
+      - run: |
+          bun install
+          bun run build:highlight
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}

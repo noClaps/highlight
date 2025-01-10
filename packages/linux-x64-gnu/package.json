@@ -1,1 +1,1 @@
-{"name":"@noclaps/highlight-linux-x64-gnu","version":"0.3.3","os":["linux"],"cpu":["x64"],"main":"highlight.linux-x64-gnu.node","files":["highlight.linux-x64-gnu.node"],"libc":["glibc"]}
+{"name":"@noclaps/highlight-linux-x64-gnu","version":"0.3.3","os":["linux"],"cpu":["x64"],"main":"highlight.linux-x64-gnu.node","files":["highlight.linux-x64-gnu.node"],"libc":["glibc"],"publishConfig":{"access":"public"}}
