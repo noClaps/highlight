@@ -1,5 +1,28 @@
 # Changelog
 
+## v0.3.5
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.4...v0.3.5)
+
+### 📦 Build
+
+- Add build script ([03dc7e3](https://gitlab.com/noClaps/highlight/commit/03dc7e3))
+
+### 🏡 Chore
+
+- Remove packages directory ([db7b795](https://gitlab.com/noClaps/highlight/commit/db7b795))
+- Update bump-version script and remove it from package.json ([ba37f72](https://gitlab.com/noClaps/highlight/commit/ba37f72))
+- Fix bump script ([5935b88](https://gitlab.com/noClaps/highlight/commit/5935b88))
+
+### 🤖 CI
+
+- Setup output directory in CI ([6c3c747](https://gitlab.com/noClaps/highlight/commit/6c3c747))
+- Use npm/ instead of packages/ as cwd ([8ae4e34](https://gitlab.com/noClaps/highlight/commit/8ae4e34))
+
+### ❤️ Contributors
+
+- NoClaps <git@zerolimits.dev>
+
 ## v0.3.4
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.3...v0.3.4)

@@ -1,6 +1,6 @@
 {
   "name": "@noclaps/highlight",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "A syntax highlighting library that uses Tree-sitter",
   "homepage": "https://gitlab.com/noClaps/highlight",
   "bugs": {
@@ -18,14 +18,14 @@
     "typescript": "^5.7.3"
   },
   "optionalDependencies": {
-    "@noclaps/highlight-darwin-arm64": "0.3.4",
-    "@noclaps/highlight-darwin-x64": "0.3.4",
-    "@noclaps/highlight-linux-arm64-gnu": "0.3.4",
-    "@noclaps/highlight-linux-arm64-musl": "0.3.4",
-    "@noclaps/highlight-linux-x64-gnu": "0.3.4",
-    "@noclaps/highlight-linux-x64-musl": "0.3.4",
-    "@noclaps/highlight-win32-arm64-msvc": "0.3.4",
-    "@noclaps/highlight-win32-x64-msvc": "0.3.4"
+    "@noclaps/highlight-darwin-arm64": "0.3.5",
+    "@noclaps/highlight-darwin-x64": "0.3.5",
+    "@noclaps/highlight-linux-arm64-gnu": "0.3.5",
+    "@noclaps/highlight-linux-arm64-musl": "0.3.5",
+    "@noclaps/highlight-linux-x64-gnu": "0.3.5",
+    "@noclaps/highlight-linux-x64-musl": "0.3.5",
+    "@noclaps/highlight-win32-arm64-msvc": "0.3.5",
+    "@noclaps/highlight-win32-x64-msvc": "0.3.5"
   },
   "scripts": {
     "artifacts": "napi artifacts -d ./dist --dist ./npm",
