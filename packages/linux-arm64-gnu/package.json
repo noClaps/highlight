@@ -1,1 +1,1 @@
-{"name":"@noclaps/highlight-linux-arm64-gnu","version":"0.3.3","os":["linux"],"cpu":["arm64"],"main":"highlight.linux-arm64-gnu.node","files":["highlight.linux-arm64-gnu.node"],"libc":["glibc"],"publishConfig":{"access":"public"}}
+{"name":"@noclaps/highlight-linux-arm64-gnu","version":"0.3.4","os":["linux"],"cpu":["arm64"],"main":"highlight.linux-arm64-gnu.node","files":["highlight.linux-arm64-gnu.node"],"libc":["glibc"],"publishConfig":{"access":"public"}}
