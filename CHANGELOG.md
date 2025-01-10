@@ -1,23 +1,5 @@
 # Changelog
 
-## v0.3.4
-
-[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.3...v0.3.4)
-
-### 📖 Documentation
-
-- Update install command in README ([791b216](https://gitlab.com/noClaps/highlight/commit/791b216))
-
-### 🏡 Chore
-
-- Update lockfile ([cd9e438](https://gitlab.com/noClaps/highlight/commit/cd9e438))
-- Prepare to publish on npmjs.com ([c83ea76](https://gitlab.com/noClaps/highlight/commit/c83ea76))
-- Update dependencies ([81d5381](https://gitlab.com/noClaps/highlight/commit/81d5381))
-
-### ❤️ Contributors
-
-- NoClaps <git@zerolimits.dev>
-
 ## v0.3.3
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.2...v0.3.3)
