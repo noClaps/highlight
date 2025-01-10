@@ -1,7 +1,4 @@
-import { $ } from "bun";
 import packageJSON from "./package.json";
-
-await $`bunx changelogen --bump`;
 
 const version = packageJSON.version;
 const newPackageJSON = packageJSON;
