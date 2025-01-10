@@ -7,7 +7,7 @@ A syntax highlighting library that uses [Tree-sitter](https://tree-sitter.github
 Install the package as a dependency to your project:
 
 ```sh
-bun add @noclaps/highlight --registry https://npm.zerolimits.dev
+bun add @noclaps/highlight
 ```
 
 and then import it into your code:
