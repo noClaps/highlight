@@ -68,7 +68,7 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
       - run: npm publish
-        working-directory: packages/${{ matrix.versions.out_dir }}/
+        working-directory: npm/${{ matrix.versions.out_dir }}/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
 
