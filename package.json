@@ -30,7 +30,7 @@
   "scripts": {
     "artifacts": "napi artifacts -d ./dist --dist ./packages",
     "build": "napi build --platform --release --strip ./dist",
-    "build:highlight": "bun build highlight.ts --minify --target node --outdir dist && tsc --project tsconfig.json",
+    "build:highlight": "bun run build.ts",
     "bump": "bunx changelogen --bump && bun bump-version.ts"
   },
   "napi": {
