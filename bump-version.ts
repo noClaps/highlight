@@ -1,14 +1,9 @@
+import { $ } from "bun";
 import packageJSON from "./package.json";
 
+await $`bunx changelogen --bump`;
+
 const version = packageJSON.version;
-
-const packages = new Bun.Glob("**/package.json").scanSync("packages");
-for (const pkg of packages) {
-  const json = await Bun.file(`packages/${pkg}`).json();
-  json.version = version;
-  Bun.write(`packages/${pkg}`, JSON.stringify(json));
-}
-
 const newPackageJSON = packageJSON;
 
 for (const dep in packageJSON.optionalDependencies) {

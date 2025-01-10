@@ -30,8 +30,7 @@
   "scripts": {
     "artifacts": "napi artifacts -d ./dist --dist ./npm",
     "build": "napi build --platform --release --strip ./dist",
-    "build:highlight": "bun run build.ts",
-    "bump": "bunx changelogen --bump && bun bump-version.ts"
+    "build:highlight": "bun run build.ts"
   },
   "napi": {
     "name": "highlight",
