@@ -1,1 +1,0 @@
-{"name":"@noclaps/highlight-win32-x64-msvc","version":"0.3.4","os":["win32"],"cpu":["x64"],"main":"highlight.win32-x64-msvc.node","files":["highlight.win32-x64-msvc.node"],"publishConfig":{"access":"public"}}
