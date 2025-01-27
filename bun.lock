@@ -5,7 +5,7 @@
       "name": "@noclaps/highlight",
       "devDependencies": {
         "@napi-rs/cli": "^2.18.4",
-        "@types/bun": "^1.1.17",
+        "@types/bun": "^1.2.0",
         "typescript": "^5.7.3",
       },
       "optionalDependencies": {
