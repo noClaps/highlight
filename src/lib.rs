@@ -1,4 +1,4 @@
-use tree_sitter_highlight::{Highlight, HighlightConfiguration, Highlighter, HtmlRenderer};
+use tree_sitter_highlight::{HighlightConfiguration, Highlighter, HtmlRenderer};
 
 #[macro_use]
 extern crate napi_derive;
@@ -129,14 +129,15 @@ pub fn highlight(highlight_names: Vec<String>, language: String, code: String) -
         .iter()
         .map(|name| format!("class=\"{}\"", name))
         .collect();
-    let attributes_callback = |h: Highlight| highlight_classes[h.0].as_bytes();
 
     let highlights = highlighter
         .highlight(&config, code.as_bytes(), None, |_| None)
         .unwrap();
 
     let mut html_renderer = HtmlRenderer::new();
-    let _ = html_renderer.render(highlights, code.as_bytes(), &attributes_callback);
+    let _ = html_renderer.render(highlights, code.as_bytes(), &move |h, output| {
+        output.extend(highlight_classes[h.0].as_bytes());
+    });
 
     html_renderer.lines().collect::<Vec<&str>>().join("")
 }
