@@ -81,6 +81,12 @@ export type BundledLanguage = (typeof bundledLanguages)[number];
 export interface Theme {
   fg?: string;
   bg?: string;
+  lineNumbers?: {
+    enabled: boolean;
+    color: string;
+    /** The number of spaces in units of `ch` to the right of the line number. Defaults to 1. */
+    rightSpace?: number;
+  };
   highlights?: Record<
     string,
     {
@@ -155,6 +161,20 @@ export function highlight(
       `<span class="${key}"`,
       `<span class="${key}" style="${style}"`,
     );
+  }
+
+  if (theme?.lineNumbers?.enabled) {
+    const maxNumString = (highlightedText.split("\n").length + 1).toString()
+      .length;
+    const rightSpace = theme.lineNumbers.rightSpace ?? 1;
+
+    highlightedText = highlightedText
+      .split("\n")
+      .map(
+        (line, index) =>
+          `<span class="line-number" style="color:${theme.lineNumbers?.color}; margin-right:${maxNumString + rightSpace - (index + 1).toString().length}ch">${index + 1}</span>${line}`,
+      )
+      .join("\n");
   }
 
   return `<pre class="ts-highlight" style="${globalStyle}"><code>${highlightedText}</code></pre>`;

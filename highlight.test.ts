@@ -7,6 +7,11 @@ import {
 const theme: Theme = {
   fg: "#fff",
   bg: "#111",
+  lineNumbers: {
+    enabled: true,
+    color: "#888",
+    rightSpace: 2,
+  },
   highlights: {
     attribute: {
       color: "#ac8e68",
@@ -134,7 +139,7 @@ const theme: Theme = {
   },
 };
 
-const lang: BundledLanguage = "c";
+const lang: BundledLanguage = "html";
 
 const code = await Bun.file(`test/test.${lang}`).text();
 const highlightedCode = highlight(code, lang, theme);
