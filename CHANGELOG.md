@@ -1,5 +1,31 @@
 # Changelog
 
+## v0.3.6
+
+[compare changes](https://github.com/noClaps/highlight/compare/v0.3.5...v0.3.6)
+
+### 🚀 Enhancements
+
+- Highlight language injections ([7db74b1](https://github.com/noClaps/highlight/commit/7db74b1))
+
+### 🩹 Fixes
+
+- Update HTMLRenderer with new attributes callback ([df8d65a](https://github.com/noClaps/highlight/commit/df8d65a))
+
+### 🏡 Chore
+
+- Update dependencies ([b5f8d8b](https://github.com/noClaps/highlight/commit/b5f8d8b))
+- Update dependencies ([32300a3](https://github.com/noClaps/highlight/commit/32300a3))
+- Update dependencies and switch to text lockfile ([a4f2109](https://github.com/noClaps/highlight/commit/a4f2109))
+- Update dependencies ([02bf97b](https://github.com/noClaps/highlight/commit/02bf97b))
+- Change repo URL to GitHub ([6679fcb](https://github.com/noClaps/highlight/commit/6679fcb))
+- Update dependencies ([a88c5b5](https://github.com/noClaps/highlight/commit/a88c5b5))
+- Update dependencies ([2343c29](https://github.com/noClaps/highlight/commit/2343c29))
+
+### ❤️ Contributors
+
+- NoClaps <git@zerolimits.dev>
+
 ## v0.3.5
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.4...v0.3.5)
