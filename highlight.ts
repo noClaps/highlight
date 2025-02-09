@@ -79,20 +79,39 @@ export type BundledLanguage = (typeof bundledLanguages)[number];
 
 /** The type of theme accepted by the Highlight package. */
 export interface Theme {
+  /** The default foreground color. */
   fg?: string;
+  /** The default background color. */
   bg?: string;
+  /** A configuration object for line numbers. */
   lineNumbers?: {
+    /** Should line numbers be enabled? */
     enabled: boolean;
+    /** The color of line numbers. */
     color: string;
-    /** The number of spaces in units of `ch` to the right of the line number. Defaults to 1. */
+    /**
+     * The number of spaces in units of `ch` to the right of the line number.
+     * Defaults to 1.
+     */
     rightSpace?: number;
   };
+  /**
+   * An object with the keys being the capture names, and the values being the
+   * style configuration for that capture.
+   */
   highlights?: Record<
     string,
     {
+      /** The text color of the token text. */
       color?: string;
+      /** The font weight of the token text. */
       fontWeight?: number;
+      /**
+       * The font style of the token text, one of "italic", "normal" and
+       * "oblique".
+       */
       fontStyle?: "italic" | "normal" | "oblique";
+      /** The background color of the token text. */
       backgroundColor?: string;
     }
   >;
