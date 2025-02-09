@@ -131,7 +131,12 @@ pub fn highlight(highlight_names: Vec<String>, language: String, code: String) -
         .collect();
 
     let highlights = highlighter
-        .highlight(&config, code.as_bytes(), None, |_| None)
+        .highlight(&config, code.as_bytes(), None, |capture| {
+            let mut nested_config = get_language(capture.to_string());
+            nested_config.configure(&highlight_names);
+            // Leak the new configuration so that it has a 'static lifetime.
+            Some(Box::leak(Box::new(nested_config)))
+        })
         .unwrap();
 
     let mut html_renderer = HtmlRenderer::new();
