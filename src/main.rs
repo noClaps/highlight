@@ -16,9 +16,8 @@ fn escape_html(input: String) -> String {
         .replace('>', "&gt;")
 }
 
-/// A CLI tool to highlight code in
 #[derive(Parser, Debug)]
-#[command(about, version)]
+#[command(version)]
 struct Args {
     /// The code to syntax highlight
     #[arg(value_parser)]
