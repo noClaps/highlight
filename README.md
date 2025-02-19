@@ -43,16 +43,16 @@ Create a TOML file with your theme. See [Themes](#themes) for details on how to 
 Then, you can run
 
 ```sh
-highlight [your code] --theme path/to/theme.toml -l [language]
+highlight path/to/code.ext --theme path/to/theme.toml -l [language]
 ```
 
 and the syntax highlighted HTML code will be written to `stdout`. If you want to write it to a file, you can use the `>` operator. For example,
 
 ```sh
-highlight "const a = 1" --theme ./theme.toml -l js > out.html
+highlight ./main.js --theme ./theme.toml -l js > out.html
 ```
 
-will highlight `const a = 1` and write the output to `out.html`.
+will highlight the contents of `main.js` and write the output to `out.html`.
 
 You can list the supported languages with:
 

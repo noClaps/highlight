@@ -7,9 +7,9 @@ install: build
 	@echo "Installed highlight to ~/.local/bin"
 
 LANG="html"
-CODE=`cat test/test.${LANG}`
+CODE="test/test.${LANG}"
 
 .PHONY: test
 test: build
-	@./highlight "$(CODE)" -t theme.toml -l ${LANG} > out.html
+	@./highlight $(CODE) -t theme.toml -l ${LANG} > out.html
 	@open out.html

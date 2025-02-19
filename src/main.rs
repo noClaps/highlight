@@ -8,7 +8,7 @@ use std::{io::Read, process::exit};
 struct Args {
     /// The code to syntax highlight
     #[arg(value_parser)]
-    code: Option<String>,
+    code: Option<Input>,
 
     /// The theme file to highlight with, required if code is passed in
     #[arg(short, long, value_parser)]
@@ -60,13 +60,23 @@ tsx
         return;
     }
 
-    let code = match args.code {
+    let mut code_arg = match args.code {
         Some(code) => code,
         None => {
             eprintln!("Code is required");
             exit(1)
         }
     };
+
+    let mut code = String::new();
+    match code_arg.read_to_string(&mut code) {
+        Ok(_) => (),
+        Err(err) => {
+            eprintln!("Error reading from file: {}", err);
+            exit(1)
+        }
+    };
+
     let lang = match args.language {
         Some(lang) => lang,
         None => {
@@ -82,7 +92,7 @@ tsx
             exit(1);
         }
     };
-    let mut theme: String = String::new();
+    let mut theme = String::new();
 
     match theme_arg.read_to_string(&mut theme) {
         Ok(_) => (),
