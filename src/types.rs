@@ -22,3 +22,9 @@ pub struct Theme {
     pub line_numbers: Option<LineNumbers>,
     pub highlights: HashMap<String, Highlight>,
 }
+
+impl Theme {
+    pub fn new(theme: String) -> Result<Theme, toml::de::Error> {
+        toml::from_str::<Theme>(theme.as_str())
+    }
+}

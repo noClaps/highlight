@@ -6,7 +6,7 @@ install: build
 	@install ./highlight ~/.local/bin
 	@echo "Installed highlight to ~/.local/bin"
 
-LANG="cs"
+LANG="html"
 CODE=`cat test/test.${LANG}`
 
 .PHONY: test

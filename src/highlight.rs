@@ -139,7 +139,7 @@ fn get_language(language: String) -> HighlightConfiguration {
     .unwrap()
 }
 
-pub fn highlight(highlight_names: Vec<String>, language: String, code: String) -> String {
+pub fn highlight_code(highlight_names: Vec<String>, language: String, code: String) -> String {
     let mut highlighter = Highlighter::new();
 
     let mut config = get_language(language);

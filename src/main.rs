@@ -1,20 +1,7 @@
-mod highlight;
-mod types;
-
 use clap::Parser;
 use clio::Input;
-use highlight::highlight;
+use highlight::{highlight, Theme};
 use std::{io::Read, process::exit};
-use types::Theme;
-
-fn escape_html(input: String) -> String {
-    input
-        .replace('&', "&amp;")
-        .replace('"', "&quot;")
-        .replace("'", "&#x27;")
-        .replace('<', "&lt;")
-        .replace('>', "&gt;")
-}
 
 #[derive(Parser, Debug)]
 #[command(version)]
@@ -105,100 +92,16 @@ tsx
         }
     };
 
-    let theme = match toml::from_str::<Theme>(theme.as_str()) {
+    let theme = match Theme::new(theme) {
         Ok(theme) => theme,
         Err(err) => {
-            eprintln!("Error parsing theme: {err}");
+            eprintln!("Error parsing theme: {}", err);
             exit(1)
         }
     };
 
-    let mut global_style = "".to_string();
-    match theme.bg {
-        Some(bg) => {
-            global_style += format!("background-color:{};", bg).as_str();
-        }
-        None => (),
+    match highlight(code, lang, theme) {
+        Some(highlighted_text) => println!("{}", highlighted_text),
+        None => eprintln!("Error highlighting code"),
     }
-    match theme.fg {
-        Some(fg) => {
-            global_style += format!("color:{};", fg).as_str();
-        }
-        None => (),
-    }
-
-    if lang == "plaintext" || lang == "plain" || lang == "text" || lang == "txt" {
-        println!(
-            "<pre class=\"ts-highlight\" style=\"{}\"><code>{}</code></pre>",
-            global_style,
-            escape_html(code)
-        );
-        return;
-    }
-
-    let highlight_names = theme.highlights.keys().map(|k| k.to_owned()).collect();
-    let mut highlighted_text = highlight(highlight_names, lang, code);
-
-    for (key, val) in theme.highlights {
-        let mut style = "".to_string();
-        match val.color {
-            Some(color) => {
-                style += format!("color:{};", color).as_str();
-            }
-            None => (),
-        }
-        match val.font_weight {
-            Some(fw) => {
-                style += format!("font-weight:{};", fw).as_str();
-            }
-            None => (),
-        }
-        match val.font_style {
-            Some(fs) => {
-                style += format!("font-style:{};", fs).as_str();
-            }
-            None => (),
-        }
-        match val.background_color {
-            Some(bg) => {
-                style += format!("background-color:{};", bg).as_str();
-            }
-            None => (),
-        }
-
-        highlighted_text = highlighted_text.replace(
-            format!("<span class=\"{key}\"").as_str(),
-            format!("<span class=\"{key}\" style=\"{style}\"").as_str(),
-        );
-    }
-
-    match theme.line_numbers {
-        Some(line_numbers) => {
-            let max_line_num = (highlighted_text.lines().count() + 1).to_string().len();
-            let right_space = match line_numbers.right_space {
-                Some(r) => r,
-                None => 1,
-            } as usize;
-
-            highlighted_text = highlighted_text
-                .lines()
-                .enumerate()
-                .map(|(index, line)| {
-                    format!(
-                        "<span class=\"line-number\" style=\"color:{};margin-right:{}ch\">{}</span>{}",
-                        line_numbers.color,
-                        max_line_num + right_space - (index + 1).to_string().len(),
-                        index+1,
-                        line
-                    )
-                })
-                .collect::<Vec<String>>().join("\n");
-        }
-        None => (),
-    }
-
-    print!(
-        "<pre class=\"ts-highlight\" style=\"{}\"><code>{}</code>",
-        global_style, highlighted_text
-    )
 }
