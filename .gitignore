@@ -1,8 +1,7 @@
 # Generated files
-dist/
+highlight
 
 # Testing files
-highlight.json
 out.html
 
 # Added by cargo
