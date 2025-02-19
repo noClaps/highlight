@@ -1,5 +1,31 @@
 # Changelog
 
+## v0.5.0
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.4.0...v0.5.0)
+
+### 🚀 Enhancements
+
+- Make into a library as well ([92e304a](https://gitlab.com/noClaps/highlight/commit/92e304a))
+- ⚠️  Make CLI code argument a file input ([13cd54d](https://gitlab.com/noClaps/highlight/commit/13cd54d))
+
+### 📖 Documentation
+
+- Add theme docs ([a1c250f](https://gitlab.com/noClaps/highlight/commit/a1c250f))
+
+### 🏡 Chore
+
+- Update dependencies ([37650a7](https://gitlab.com/noClaps/highlight/commit/37650a7))
+- Add bench script to Makefile ([f660b14](https://gitlab.com/noClaps/highlight/commit/f660b14))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Make CLI code argument a file input ([13cd54d](https://gitlab.com/noClaps/highlight/commit/13cd54d))
+
+### ❤️ Contributors
+
+- NoClaps <git@zerolimits.dev>
+
 ## v0.4.0
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.6...v0.4.0)
