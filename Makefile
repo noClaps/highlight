@@ -13,3 +13,6 @@ CODE="test/test.${LANG}"
 test: build
 	@./highlight $(CODE) -t theme.toml -l ${LANG} > out.html
 	@open out.html
+
+bench: build
+	@hyperfine "./highlight $(CODE) -t theme.toml -l ${LANG}" -w 50
