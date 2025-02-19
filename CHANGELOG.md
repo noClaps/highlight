@@ -1,5 +1,32 @@
 # Changelog
 
+## v0.4.0
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.3.6...v0.4.0)
+
+### 🚀 Enhancements
+
+- Add support for line numbers ([eec85a5](https://gitlab.com/noClaps/highlight/commit/eec85a5))
+- ⚠️  Convert into a CLI tool ([6fb019f](https://gitlab.com/noClaps/highlight/commit/6fb019f))
+
+### 📖 Documentation
+
+- Add JSDoc for the Theme type ([09861ba](https://gitlab.com/noClaps/highlight/commit/09861ba))
+- Remove CLI about text ([71338d2](https://gitlab.com/noClaps/highlight/commit/71338d2))
+- Add build and usage instructions to README ([26e8edf](https://gitlab.com/noClaps/highlight/commit/26e8edf))
+
+### 🎨 Styles
+
+- Use `use` instead of `#[macro_use]` for napi_derive macro ([2860201](https://gitlab.com/noClaps/highlight/commit/2860201))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Convert into a CLI tool ([6fb019f](https://gitlab.com/noClaps/highlight/commit/6fb019f))
+
+### ❤️ Contributors
+
+- NoClaps <git@zerolimits.dev>
+
 ## v0.3.6
 
 [compare changes](https://github.com/noClaps/highlight/compare/v0.3.5...v0.3.6)
