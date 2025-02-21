@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.5.1
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.5.0...v0.5.1)
+
+### 📦 Build
+
+- Reduce dependencies for library ([95ceb12](https://gitlab.com/noClaps/highlight/commit/95ceb12))
+
+### 🏡 Chore
+
+- Update dependencies ([68bd827](https://gitlab.com/noClaps/highlight/commit/68bd827))
+
+### ❤️ Contributors
+
+- NoClaps <git@zerolimits.dev>
+
 ## v0.5.0
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.4.0...v0.5.0)
