@@ -1,4 +1,4 @@
-use std::process::exit;
+use std::error::Error;
 
 use tree_sitter_highlight::{HighlightConfiguration, Highlighter, HtmlRenderer};
 
@@ -93,7 +93,7 @@ fn get_injections_query(language: String) -> String {
     }
 }
 
-fn get_language(language: String) -> HighlightConfiguration {
+fn get_language(language: String) -> Result<HighlightConfiguration, Box<dyn Error>> {
     let ts_lang = match language.as_str() {
         "agda" => tree_sitter_agda::LANGUAGE,
         "c" => tree_sitter_c::LANGUAGE,
@@ -120,8 +120,9 @@ fn get_language(language: String) -> HighlightConfiguration {
         "typescript" | "ts" => tree_sitter_typescript::LANGUAGE_TYPESCRIPT,
         "tsx" => tree_sitter_typescript::LANGUAGE_TSX,
         _ => {
-            eprintln!("Language {language} is not supported by Highlight");
-            exit(1)
+            return Err(format!(
+                "Language \"{language}\" is not supported by Highlight"
+            ))?;
         }
     };
 
@@ -129,20 +130,27 @@ fn get_language(language: String) -> HighlightConfiguration {
     let locals_query = get_locals_query(language.clone());
     let injections_query = get_injections_query(language.clone());
 
-    HighlightConfiguration::new(
+    Ok(HighlightConfiguration::new(
         ts_lang.into(),
         language,
         highlight_query.as_str(),
         injections_query.as_str(),
         locals_query.as_str(),
     )
-    .unwrap()
+    .unwrap())
 }
 
-pub fn highlight_code(highlight_names: Vec<String>, language: String, code: String) -> String {
+pub fn highlight_code(
+    highlight_names: Vec<String>,
+    language: String,
+    code: String,
+) -> Result<String, Box<dyn Error>> {
     let mut highlighter = Highlighter::new();
 
-    let mut config = get_language(language);
+    let mut config = match get_language(language) {
+        Ok(config) => config,
+        Err(err) => return Err(err),
+    };
     config.configure(&highlight_names);
 
     let highlight_classes: Vec<String> = highlight_names
@@ -152,7 +160,13 @@ pub fn highlight_code(highlight_names: Vec<String>, language: String, code: Stri
 
     let highlights = highlighter
         .highlight(&config, code.as_bytes(), None, |capture| {
-            let mut nested_config = get_language(capture.to_string());
+            let mut nested_config = match get_language(capture.to_string()) {
+                Ok(config) => config,
+                Err(err) => {
+                    eprintln!("{}", err);
+                    return None;
+                }
+            };
             nested_config.configure(&highlight_names);
             // Leak the new configuration so that it has a 'static lifetime.
             Some(Box::leak(Box::new(nested_config)))
@@ -164,5 +178,5 @@ pub fn highlight_code(highlight_names: Vec<String>, language: String, code: Stri
         output.extend(highlight_classes[h.0].as_bytes());
     });
 
-    html_renderer.lines().collect::<Vec<&str>>().join("")
+    Ok(html_renderer.lines().collect::<Vec<&str>>().join(""))
 }

@@ -13,7 +13,7 @@ fn escape_html(input: String) -> String {
         .replace('>', "&gt;")
 }
 
-pub fn highlight(code: String, language: String, theme: Theme) -> Option<String> {
+pub fn highlight(code: String, language: String, theme: Theme) -> String {
     let mut global_style = "".to_string();
     match theme.bg {
         Some(bg) => {
@@ -29,16 +29,26 @@ pub fn highlight(code: String, language: String, theme: Theme) -> Option<String>
     }
 
     if language == "plaintext" || language == "plain" || language == "text" || language == "txt" {
-        println!(
+        return format!(
             "<pre class=\"ts-highlight\" style=\"{}\"><code>{}</code></pre>",
             global_style,
             escape_html(code)
         );
-        return None;
     }
 
     let highlight_names = theme.highlights.keys().map(|k| k.to_owned()).collect();
-    let mut highlighted_text = highlight_code(highlight_names, language, code);
+    let mut highlighted_text = match highlight_code(highlight_names, language, code.clone()) {
+        Ok(text) => text,
+        Err(err) => {
+            eprintln!("ERROR: {err}");
+            eprintln!("ERROR: Continuing as plaintext");
+            return format!(
+                "<pre class=\"ts-highlight\" style=\"{}\"><code>{}</code></pre>",
+                global_style,
+                escape_html(code)
+            );
+        }
+    };
 
     for (key, val) in theme.highlights {
         let mut style = "".to_string();
@@ -98,8 +108,8 @@ pub fn highlight(code: String, language: String, theme: Theme) -> Option<String>
         None => (),
     }
 
-    Some(format!(
+    format!(
         "<pre class=\"ts-highlight\" style=\"{}\"><code>{}</code>",
         global_style, highlighted_text
-    ))
+    )
 }
