@@ -1,5 +1,4 @@
 use std::error::Error;
-
 use tree_sitter_highlight::{HighlightConfiguration, Highlighter, HtmlRenderer};
 
 fn get_highlight_query(language: String) -> String {

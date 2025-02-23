@@ -1,10 +1,10 @@
 use clap::Parser;
 use clio::Input;
-use highlight::{highlight, Theme};
+use highlight::{Theme, highlight};
 use std::{io::Read, process::exit};
 
 #[derive(Parser, Debug)]
-#[command(version)]
+#[command(version, name = "highlight")]
 struct Args {
     /// The code to syntax highlight
     #[arg(value_parser)]
@@ -80,7 +80,9 @@ tsx
     let lang = match args.language {
         Some(lang) => lang,
         None => {
-            eprintln!("Language is required. You can use `highlight --list-langs` to see available languages");
+            eprintln!(
+                "Language is required. You can use `highlight --list-langs` to see available languages"
+            );
             exit(1)
         }
     };

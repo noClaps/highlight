@@ -1,5 +1,5 @@
 build:
-	@cargo build -r --features binary --bin highlight
+	@cargo build -r --workspace
 	@cp target/release/highlight .
 
 install: build
