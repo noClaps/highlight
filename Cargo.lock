@@ -198,7 +198,7 @@ checksum = "fbf6a919d6cf397374f7dfeeea91d974c7c0a7221d0d0f4f20d859d329e53fcc"
 
 [[package]]
 name = "highlight"
-version = "0.5.1"
+version = "0.5.2"
 dependencies = [
  "clap",
  "clio",

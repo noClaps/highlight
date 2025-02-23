@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.5.2
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.5.1...v0.5.2)
+
+### 🚀 Enhancements
+
+- Return error when encountering an unsupported language ([de63677](https://gitlab.com/noClaps/highlight/commit/de63677))
+
+### 🏡 Chore
+
+- Update dependencies ([c722ce6](https://gitlab.com/noClaps/highlight/commit/c722ce6))
+- Move src/main.rs to src/bin/highlight.rs ([575700a](https://gitlab.com/noClaps/highlight/commit/575700a))
+
+### ❤️ Contributors
+
+- NoClaps <git@zerolimits.dev>
+
 ## v0.5.1
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.5.0...v0.5.1)
