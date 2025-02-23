@@ -110,8 +110,5 @@ tsx
         }
     };
 
-    match highlight(code, lang, theme) {
-        Some(highlighted_text) => println!("{}", highlighted_text),
-        None => eprintln!("Error highlighting code"),
-    }
+    println!("{}", highlight(code, lang, theme))
 }
