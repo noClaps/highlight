@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Highlight {
     pub color: Option<String>,
     pub font_weight: Option<u16>,
@@ -9,13 +9,13 @@ pub struct Highlight {
     pub background_color: Option<String>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct LineNumbers {
     pub color: String,
     pub right_space: Option<u64>,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Theme {
     pub fg: Option<String>,
     pub bg: Option<String>,
