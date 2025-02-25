@@ -8,6 +8,6 @@ name = "highlight"
 path = "src/main.rs"
 
 [dependencies]
-clap = { version = "4.5.30", features = ["derive", "wrap_help"]}
+clap = { version = "4.5.31", features = ["derive", "wrap_help"]}
 clio = { version = "0.3.5", features = ["clap-parse"]}
 highlight = {path = "../"}
