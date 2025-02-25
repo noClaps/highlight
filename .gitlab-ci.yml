@@ -1,6 +1,9 @@
 stages:
   - deploy
 
+variables:
+  PROJECT_NAME: highlight
+
 # Create formula and publish to tap
 deploy_formula:
   stage: deploy
@@ -23,8 +26,8 @@ deploy_formula:
     - |
       cat > $PROJECT_NAME.rb << EOF
       class YourProject < Formula
-        desc "Brief description of your project"
-        homepage "https://github.com/username/your-project"
+        desc "A syntax highlighting CLI tool that uses Tree-sitter"
+        homepage "https://gitlab.com/noClaps/highlight"
         url "$RELEASE_URL"
         sha256 "$SHA256_CHECKSUM"
         license "0BSD" # or whatever license you use
