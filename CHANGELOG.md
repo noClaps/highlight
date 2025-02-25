@@ -1,5 +1,34 @@
 # Changelog
 
+## v0.6.0
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.5.2...v0.6.0)
+
+### 🚀 Enhancements
+
+- Implement Clone for Theme ([4afaef6](https://gitlab.com/noClaps/highlight/commit/4afaef6))
+
+### 🩹 Fixes
+
+- Trim highlighted text ([8e5e941](https://gitlab.com/noClaps/highlight/commit/8e5e941))
+
+### 📦 Build
+
+- Move CLI to a different crate in workspace ([7b440ed](https://gitlab.com/noClaps/highlight/commit/7b440ed))
+
+### 🏡 Chore
+
+- Update dependencies ([f6d7237](https://gitlab.com/noClaps/highlight/commit/f6d7237))
+
+### 🤖 CI
+
+- Add Homebrew tap pipeline ([b6f7a29](https://gitlab.com/noClaps/highlight/commit/b6f7a29))
+- Update GitLab CI file ([bc781ca](https://gitlab.com/noClaps/highlight/commit/bc781ca))
+
+### ❤️ Contributors
+
+- NoClaps <git@zerolimits.dev>
+
 ## v0.5.2
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.5.1...v0.5.2)
