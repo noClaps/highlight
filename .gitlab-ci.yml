@@ -1,89 +1,12 @@
 stages:
-  - build
-  - package
   - deploy
-
-variables:
-  PROJECT_NAME: highlight
-  TAP_REPO: noClaps/homebrew-tap
-
-# Build for Linux (x86_64)
-build:linux-amd64:
-  stage: build
-  image: rust:latest
-  script:
-    - cargo build --release --workspace --target x86_64-unknown-linux-gnu
-  artifacts:
-    paths:
-      - target/x86_64-unknown-linux-gnu/release/$PROJECT_NAME
-
-# Build for macOS (Intel)
-build:macos-amd64:
-  stage: build
-  image: rust:latest
-  script:
-    - rustup target add x86_64-apple-darwin
-    - apt-get update && apt-get install -y clang llvm
-    - cargo build --release --workspace --target x86_64-apple-darwin
-  artifacts:
-    paths:
-      - target/x86_64-apple-darwin/release/$PROJECT_NAME
-
-# Build for macOS (Apple Silicon)
-build:macos-arm64:
-  stage: build
-  image: rust:latest
-  script:
-    - rustup target add aarch64-apple-darwin
-    - apt-get update && apt-get install -y clang llvm
-    - cargo build --release --workspace --target aarch64-apple-darwin
-  artifacts:
-    paths:
-      - target/aarch64-apple-darwin/release/$PROJECT_NAME
-
-# Package binaries
-package:
-  stage: package
-  image: alpine:latest
-  rules:
-    - if: $CI_COMMIT_TAG
-  script:
-    - apk add --no-cache tar gzip
-    # Create directory structure for bottling
-    - mkdir -p package/bin
-
-    # Copy binaries with correct naming
-    - cp target/x86_64-unknown-linux-gnu/release/$PROJECT_NAME package/bin/$PROJECT_NAME
-    - tar -czf ${PROJECT_NAME}-${CI_COMMIT_TAG}-x86_64_linux.tar.gz -C package .
-
-    - rm -rf package/bin/*
-    - cp target/x86_64-apple-darwin/release/$PROJECT_NAME package/bin/$PROJECT_NAME
-    - tar -czf ${PROJECT_NAME}-${CI_COMMIT_TAG}-x86_64_macos.tar.gz -C package .
-
-    - rm -rf package/bin/*
-    - cp target/aarch64-apple-darwin/release/$PROJECT_NAME package/bin/$PROJECT_NAME
-    - tar -czf ${PROJECT_NAME}-${CI_COMMIT_TAG}-arm64_macos.tar.gz -C package .
-
-    # Calculate checksums
-    - LINUX_AMD64_SHA=$(sha256sum ${PROJECT_NAME}-${CI_COMMIT_TAG}-x86_64_linux.tar.gz | awk '{print $1}')
-    - MACOS_AMD64_SHA=$(sha256sum ${PROJECT_NAME}-${CI_COMMIT_TAG}-x86_64_macos.tar.gz | awk '{print $1}')
-    - MACOS_ARM64_SHA=$(sha256sum ${PROJECT_NAME}-${CI_COMMIT_TAG}-arm64_macos.tar.gz | awk '{print $1}')
-
-    # Store values for next stage
-    - echo "LINUX_AMD64_SHA=$LINUX_AMD64_SHA" >> build.env
-    - echo "MACOS_AMD64_SHA=$MACOS_AMD64_SHA" >> build.env
-    - echo "MACOS_ARM64_SHA=$MACOS_ARM64_SHA" >> build.env
-  artifacts:
-    paths:
-      - ${PROJECT_NAME}-${CI_COMMIT_TAG}-*.tar.gz
-    reports:
-      dotenv: build.env
 
 # Create formula and publish to tap
 deploy_formula:
   stage: deploy
   image: ruby:latest
   rules:
+    - when: manual
     - if: $CI_COMMIT_TAG
   script:
     - apt-get update && apt-get install -y git
@@ -91,40 +14,29 @@ deploy_formula:
     - git config --global user.email "gitlab-ci@example.com"
 
     # Set vars for formula URLs - use your project's actual hosting location
-    - RELEASE_URL="https://gitlab.com/$CI_PROJECT_PATH/-/releases/$CI_COMMIT_TAG/downloads"
+    - RELEASE_URL="https://gitlab.com/$CI_PROJECT_PATH/-/archive/$CI_COMMIT_TAG/$PROJECT_NAME-$CI_COMMIT_TAG.tar.gz"
+    - curl $RELEASE_URL --output $PROJECT_NAME.tar.gz
+    - SHA256_CHECKSUM=$(sha256sum highlight.tar.gz | awk '{print $1}')
 
     # Create the formula file with bottles for multiple platforms
     - |
       cat > $PROJECT_NAME.rb << EOF
-      class $(echo $PROJECT_NAME | sed -r 's/(^|-)([a-z])/\U\2/g') < Formula
-        desc "Your Rust project description"
-        homepage "https://gitlab.com/$CI_PROJECT_PATH"
-        version "$CI_COMMIT_TAG"
-        license "MIT"
+      class YourProject < Formula
+        desc "Brief description of your project"
+        homepage "https://github.com/username/your-project"
+        url "$RELEASE_URL"
+        sha256 "$SHA256_CHECKSUM"
+        license "0BSD" # or whatever license you use
 
         depends_on "rust" => :build
 
-        on_macos do
-          if Hardware::CPU.arm?
-            url "$RELEASE_URL/${PROJECT_NAME}-${CI_COMMIT_TAG}-arm64_macos.tar.gz"
-            sha256 "$MACOS_ARM64_SHA"
-          else
-            url "$RELEASE_URL/${PROJECT_NAME}-${CI_COMMIT_TAG}-x86_64_macos.tar.gz"
-            sha256 "$MACOS_AMD64_SHA"
-          end
-        end
-
-        on_linux do
-          url "$RELEASE_URL/${PROJECT_NAME}-${CI_COMMIT_TAG}-x86_64_linux.tar.gz"
-          sha256 "$LINUX_AMD64_SHA"
-        end
-
         def install
-          bin.install "$PROJECT_NAME"
+          system "cargo", "install", "--locked", "--root", prefix, "--path", "bin"
         end
 
         test do
-          assert_match "version", shell_output("\#{bin}/$PROJECT_NAME --version")
+          # Add a test command to verify installation worked
+          assert_match "version", shell_output("#{bin}/your-project --version")
         end
       end
       EOF
