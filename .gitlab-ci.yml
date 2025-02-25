@@ -24,7 +24,7 @@ deploy_formula:
     # Create the formula file with bottles for multiple platforms
     - |
       cat > $PROJECT_NAME.rb << EOF
-      class YourProject < Formula
+      class $(echo $PROJECT_NAME | sed -r 's/(^|-)([a-z])/\U\2/g') < Formula
         desc "A syntax highlighting CLI tool that uses Tree-sitter"
         homepage "https://gitlab.com/noClaps/highlight"
         url "$RELEASE_URL"
