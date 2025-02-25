@@ -3,6 +3,7 @@ stages:
 
 variables:
   PROJECT_NAME: highlight
+  TAP_REPO: noClaps/homebrew-tap
 
 # Create formula and publish to tap
 deploy_formula:
