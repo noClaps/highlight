@@ -110,6 +110,7 @@ pub fn highlight(code: String, language: String, theme: Theme) -> String {
 
     format!(
         "<pre class=\"ts-highlight\" style=\"{}\"><code>{}</code>",
-        global_style, highlighted_text
+        global_style,
+        highlighted_text.trim()
     )
 }
