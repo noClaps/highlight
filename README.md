@@ -2,24 +2,19 @@
 
 A syntax highlighting CLI tool that uses [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) for incredibly quick parsing and highlighting.
 
-## Build instructions
+## Installation
 
-You'll need Rust to build this project.
+You can install it using Homebrew on macos/Linux:
 
-1. Clone the repository.
+```sh
+brew install noclaps/tap/highlight
+```
 
-   ```sh
-   git clone https://gitlab.com/noClaps/highlight.git
-   cd highlight
-   ```
+or you can build it from source:
 
-2. Build the project.
-
-   ```sh
-   make
-   ```
-
-   You can then run it using `./highlight`.
+```sh
+cargo install --git https://gitlab.com/noClaps/highlight
+```
 
 ## Usage
 
