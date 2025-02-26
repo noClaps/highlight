@@ -1,5 +1,32 @@
 # Changelog
 
+## v0.6.1
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.6.0...v0.6.1)
+
+### 🩹 Fixes
+
+- Add PROJECT_NAME variable ([7824e89](https://gitlab.com/noClaps/highlight/commit/7824e89))
+- Add TAP_REPO variable ([4649deb](https://gitlab.com/noClaps/highlight/commit/4649deb))
+- Update project name ([6e18a6a](https://gitlab.com/noClaps/highlight/commit/6e18a6a))
+- Close `</pre>` element ([c356b70](https://gitlab.com/noClaps/highlight/commit/c356b70))
+
+### 📖 Documentation
+
+- Update installation docs ([e5f484c](https://gitlab.com/noClaps/highlight/commit/e5f484c))
+
+### 🤖 CI
+
+- Check downloaded file ([6faedf0](https://gitlab.com/noClaps/highlight/commit/6faedf0))
+- Remove ls and manual trigger ([07191d4](https://gitlab.com/noClaps/highlight/commit/07191d4))
+- Re-add manual trigger ([c496b34](https://gitlab.com/noClaps/highlight/commit/c496b34))
+- Move all build steps to homebrew-tap repo ([5bfec55](https://gitlab.com/noClaps/highlight/commit/5bfec55))
+- Use smaller image and fix commands ([059574a](https://gitlab.com/noClaps/highlight/commit/059574a))
+
+### ❤️ Contributors
+
+- NoClaps <git@zerolimits.dev>
+
 ## v0.6.0
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.5.2...v0.6.0)
