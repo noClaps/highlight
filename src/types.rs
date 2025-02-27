@@ -27,4 +27,8 @@ impl Theme {
     pub fn new(theme: String) -> Result<Theme, toml::de::Error> {
         toml::from_str::<Theme>(theme.as_str())
     }
+
+    pub fn blank() -> Theme {
+        Theme::new("[highlights]".to_string()).unwrap()
+    }
 }
