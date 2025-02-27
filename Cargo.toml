@@ -1,12 +1,5 @@
 [package]
 name = "highlight"
-version = { workspace = true }
-edition = { workspace = true }
-
-[workspace]
-members = ["bin/"]
-
-[workspace.package]
 version = "0.6.1"
 edition = "2021"
 
