@@ -114,3 +114,26 @@ pub fn highlight(code: String, language: String, theme: Theme) -> String {
         highlighted_text.trim()
     )
 }
+
+#[cfg(test)]
+use std::fs::{read, write};
+
+#[test]
+fn test() {
+    let language = "c";
+    let code = match read(format!("test/test.{language}")) {
+        Ok(code) => match String::from_utf8(code) {
+            Ok(string) => string,
+            Err(err) => panic!("ERROR: Error reading test file: {err}"),
+        },
+        Err(err) => panic!("{err}"),
+    };
+    let theme = match Theme::new(include_str!("../theme.toml").to_string()) {
+        Ok(theme) => theme,
+        Err(err) => panic!("ERROR: Error parsing theme: {err}"),
+    };
+    match write("out.html", highlight(code, language.to_string(), theme)) {
+        Ok(_) => (),
+        Err(err) => panic!("ERROR: Error writing output: {err}"),
+    };
+}
