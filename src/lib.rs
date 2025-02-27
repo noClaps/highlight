@@ -117,11 +117,12 @@ pub fn highlight(code: String, language: String, theme: Theme) -> String {
 
 #[cfg(test)]
 use std::fs::{read, write};
+#[cfg(test)]
+const LANGUAGE: &str = "c";
 
 #[test]
 fn test() {
-    let language = "c";
-    let code = match read(format!("test/test.{language}")) {
+    let code = match read(format!("test/test.{LANGUAGE}")) {
         Ok(code) => match String::from_utf8(code) {
             Ok(string) => string,
             Err(err) => panic!("ERROR: Error reading test file: {err}"),
@@ -132,7 +133,26 @@ fn test() {
         Ok(theme) => theme,
         Err(err) => panic!("ERROR: Error parsing theme: {err}"),
     };
-    match write("out.html", highlight(code, language.to_string(), theme)) {
+    match write("out.html", highlight(code, LANGUAGE.to_string(), theme)) {
+        Ok(_) => (),
+        Err(err) => panic!("ERROR: Error writing output: {err}"),
+    };
+}
+
+#[test]
+fn test_blank() {
+    let code = match read(format!("test/test.{LANGUAGE}")) {
+        Ok(code) => match String::from_utf8(code) {
+            Ok(string) => string,
+            Err(err) => panic!("ERROR: Error reading test file: {err}"),
+        },
+        Err(err) => panic!("{err}"),
+    };
+    let theme = Theme::blank();
+    match write(
+        "out-blank.html",
+        highlight(code, LANGUAGE.to_string(), theme),
+    ) {
         Ok(_) => (),
         Err(err) => panic!("ERROR: Error writing output: {err}"),
     };
