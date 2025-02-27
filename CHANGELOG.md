@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.7.0
+
+[compare changes](https://gitlab.com/noClaps/highlight/compare/v0.6.1...v0.7.0)
+
+- Remove CLI. This is now only a Rust library.
+- Add blank theme function. You can now create a blank theme with no syntax highlighting using `Theme::blank()`.
+
 ## v0.6.1
 
 [compare changes](https://gitlab.com/noClaps/highlight/compare/v0.6.0...v0.6.1)
