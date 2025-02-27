@@ -2,6 +2,8 @@ mod highlight;
 mod types;
 
 use crate::highlight::highlight_code;
+use crate::types::Language;
+
 pub use crate::types::Theme;
 
 fn escape_html(input: String) -> String {
@@ -28,6 +30,18 @@ pub fn highlight(code: String, language: String, theme: Theme) -> String {
         None => (),
     }
 
+    let ts_language = match Language::from_string(&language) {
+        Some(lang) => lang,
+        None => {
+            eprintln!("Language not supported: {language}, continuing as plaintext");
+            return format!(
+                "<pre class=\"ts-highlight\" style=\"{}\"><code>{}</code></pre>",
+                global_style,
+                escape_html(code)
+            );
+        }
+    };
+
     if language == "plaintext" || language == "plain" || language == "text" || language == "txt" {
         return format!(
             "<pre class=\"ts-highlight\" style=\"{}\"><code>{}</code></pre>",
@@ -37,7 +51,7 @@ pub fn highlight(code: String, language: String, theme: Theme) -> String {
     }
 
     let highlight_names = theme.highlights.keys().map(|k| k.to_owned()).collect();
-    let mut highlighted_text = match highlight_code(highlight_names, language, code.clone()) {
+    let mut highlighted_text = match highlight_code(highlight_names, ts_language, code.clone()) {
         Ok(text) => text,
         Err(err) => {
             eprintln!("ERROR: {err}");
