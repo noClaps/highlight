@@ -1,4 +1,3 @@
-use std::error::Error;
 use tree_sitter_highlight::{HighlightConfiguration, Highlighter, HtmlRenderer};
 
 use crate::types::Language;
@@ -95,7 +94,7 @@ fn get_injections_query(language: &Language) -> String {
     .to_string()
 }
 
-fn get_language(language: Language) -> Result<HighlightConfiguration, Box<dyn Error>> {
+fn get_language(language: Language) -> HighlightConfiguration {
     let ts_lang = match language {
         Language::Agda => tree_sitter_agda::LANGUAGE,
         Language::C => tree_sitter_c::LANGUAGE,
@@ -127,27 +126,20 @@ fn get_language(language: Language) -> Result<HighlightConfiguration, Box<dyn Er
     let locals_query = get_locals_query(&language);
     let injections_query = get_injections_query(&language);
 
-    Ok(HighlightConfiguration::new(
+    HighlightConfiguration::new(
         ts_lang.into(),
         language.to_string(),
         highlight_query.as_str(),
         injections_query.as_str(),
         locals_query.as_str(),
     )
-    .unwrap())
+    .unwrap()
 }
 
-pub fn highlight_code(
-    highlight_names: Vec<String>,
-    language: Language,
-    code: String,
-) -> Result<String, Box<dyn Error>> {
+pub fn highlight_code(highlight_names: Vec<String>, language: Language, code: String) -> String {
     let mut highlighter = Highlighter::new();
 
-    let mut config = match get_language(language) {
-        Ok(config) => config,
-        Err(err) => return Err(err),
-    };
+    let mut config = get_language(language);
     config.configure(&highlight_names);
 
     let highlight_classes: Vec<String> = highlight_names
@@ -161,13 +153,7 @@ pub fn highlight_code(
                 Some(lang) => lang,
                 None => return None,
             };
-            let mut nested_config = match get_language(capture_lang) {
-                Ok(config) => config,
-                Err(err) => {
-                    eprintln!("{}", err);
-                    return None;
-                }
-            };
+            let mut nested_config = get_language(capture_lang);
             nested_config.configure(&highlight_names);
             // Leak the new configuration so that it has a 'static lifetime.
             Some(Box::leak(Box::new(nested_config)))
@@ -179,5 +165,5 @@ pub fn highlight_code(
         output.extend(highlight_classes[h.0].as_bytes());
     });
 
-    Ok(html_renderer.lines().collect::<Vec<&str>>().join(""))
+    html_renderer.lines().collect::<Vec<&str>>().join("")
 }

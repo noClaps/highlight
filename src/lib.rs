@@ -51,18 +51,7 @@ pub fn highlight(code: String, language: String, theme: Theme) -> String {
     }
 
     let highlight_names = theme.highlights.keys().map(|k| k.to_owned()).collect();
-    let mut highlighted_text = match highlight_code(highlight_names, ts_language, code.clone()) {
-        Ok(text) => text,
-        Err(err) => {
-            eprintln!("ERROR: {err}");
-            eprintln!("ERROR: Continuing as plaintext");
-            return format!(
-                "<pre class=\"ts-highlight\" style=\"{}\"><code>{}</code></pre>",
-                global_style,
-                escape_html(code)
-            );
-        }
-    };
+    let mut highlighted_text = highlight_code(highlight_names, ts_language, code.clone());
 
     for (key, val) in theme.highlights {
         let mut style = "".to_string();
