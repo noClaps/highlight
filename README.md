@@ -102,4 +102,10 @@ A theme is a TOML file with the following properties:
 
 All of the color values are CSS colors, so you can use hex (`#rrggbbaa`), OKLCH (`oklch(lightness% chroma hue / alpha)`), etc.
 
-You can look at [`theme.toml`](./theme.toml) for an example theme.
+You can look at [`theme.toml`](./theme.toml) for an example theme. You can also add
+
+```toml
+"$schema" = "https://zerolimits.dev/theme-schema.json"
+```
+
+to the top of your theme file for completions and descriptions of the different properties.
