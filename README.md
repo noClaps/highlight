@@ -7,7 +7,7 @@ A syntax highlighting library that uses [Tree-sitter](https://tree-sitter.github
 Add it as a dependency to your project:
 
 ```sh
-cargo add --git https://gitlab.com/noClaps/highlight.git
+cargo add --git https://github.com/noClaps/highlight.git
 ```
 
 Then you can use it in your code:
