@@ -1,9 +1,3 @@
-# Generated files
-highlight
-
 # Testing files
 out.html
 out-blank.html
-
-# Added by cargo
-target/
