@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> Highlight is now part of [Znak](https://github.com/noClaps/znak) and can be imported from there. It is also now a Go package and no longer written in Rust. This repository will be archived.
+
 # Highlight
 
 A syntax highlighting library that uses [Tree-sitter](https://tree-sitter.github.io/tree-sitter/) for incredibly quick parsing and highlighting.
